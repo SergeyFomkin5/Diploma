@@ -22,6 +22,6 @@ public class Level_0_DoorOpening : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (GreenTube)
+        //if (GreenTube)
     }
 }
