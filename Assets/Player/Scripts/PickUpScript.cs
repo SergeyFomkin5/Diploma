@@ -31,7 +31,7 @@ public class PickUpScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E)) //change E to whichever key you want to press to pick up
         {
-            Debug.Log('E');
+            //Debug.Log('E');
             if (heldObj == null) //if currently not holding anything
             {
                 //perform raycast to check if player is looking at object within pickuprange
