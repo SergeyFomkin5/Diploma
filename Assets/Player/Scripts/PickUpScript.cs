@@ -26,7 +26,7 @@ public class PickUpScript : MonoBehaviour
     public string[] pickUpArray;
     void Start()
     {
-        //LayerNumber = LayerMask.NameToLayer("HoldLayer"); //if your holdLayer is named differently make sure to change this ""
+        LayerNumber = LayerMask.NameToLayer("HoldObject"); //if your holdLayer is named differently make sure to change this ""
 
         mouseLookScript = GetComponent<Player_CameraRotation>();
     }
@@ -73,31 +73,45 @@ public class PickUpScript : MonoBehaviour
     }
     void PickUpObject(GameObject pickUpObj)
     {
-        if (pickUpObj.GetComponent<Rigidbody>()) //make sure the object has a RigidBody
+        if (pickUpObj.GetComponent<Rigidbody>()) // Убедиться, что есть Rigidbody
         {
-            heldObj = pickUpObj; //assign heldObj to the object that was hit by the raycast (no longer == null)
-            heldObjRb = pickUpObj.GetComponent<Rigidbody>(); //assign Rigidbody
-            heldObjRb.isKinematic = true;
-            heldObjRb.transform.parent = holdPos.transform; //parent object to holdposition
-            heldObj.layer = LayerNumber; //change the object layer to the holdLayer
-            //make sure object doesnt collide with player, it can cause weird bugs
+            heldObj = pickUpObj;
+            heldObjRb = pickUpObj.GetComponent<Rigidbody>();
+            heldObjRb.isKinematic = false; // Не отключать физику
+            heldObjRb.useGravity = false; // Отключить гравитацию во время удержания
+            heldObjRb.constraints = RigidbodyConstraints.FreezeRotation; // Заблокировать вращение для стабильности
+
+            heldObj.layer = LayerNumber; // Установить слой удержания
+
             Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), true);
         }
     }
+
     void DropObject()
     {
-        //re-enable collision with player
+        // Включаем гравитацию обратно
+        heldObjRb.useGravity = true;
+
+        // Разрешаем объекту снова взаимодействовать с игроком
         Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), false);
-        heldObj.layer = 0; //object assigned back to default layer
-        heldObjRb.isKinematic = false;
-        heldObj.transform.parent = null; //unparent object
-        heldObj = null; //undefine game object
+
+        heldObj.layer = 0; // Вернуть объект на стандартный слой
+        heldObjRb.isKinematic = false; // Разрешить физическое движение
+        heldObjRb.constraints = RigidbodyConstraints.None; // Снять ограничения на вращение
+        heldObj.transform.parent = null; // Удалить родительский объект
+        heldObj = null; // Сбросить ссылку на объект
     }
+
     void MoveObject()
     {
-        //keep object position the same as the holdPosition position
-        heldObj.transform.position = holdPos.transform.position;
+        Vector3 targetPosition = holdPos.position; // Желаемая позиция объекта
+        Vector3 moveDirection = (targetPosition - heldObj.transform.position); // Направление движения
+        float moveSpeed = 10f; // Скорость перемещения
+
+        // Применяем силу для плавного перемещения объекта к позиции удержания
+        heldObjRb.velocity = moveDirection * moveSpeed;
     }
+
     void RotateObject()
     {
         if (Input.GetKey(KeyCode.R))//hold R key to rotate, change this to whatever key you want
@@ -128,28 +142,33 @@ public class PickUpScript : MonoBehaviour
     }
     void ThrowObject()
     {
-        //same as drop function, but add force to object before undefining it
+        // Включаем гравитацию обратно
+        heldObjRb.useGravity = true;
+
+        // Разрешаем объекту снова взаимодействовать с игроком
         Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), false);
-        heldObj.layer = 0;
-        heldObjRb.isKinematic = false;
-        heldObj.transform.parent = null;
+
+        heldObj.layer = 0; // Вернуть объект на стандартный слой
+        heldObjRb.isKinematic = false; // Разрешить физическое движение
+        heldObjRb.constraints = RigidbodyConstraints.None; // Снять ограничения на вращение
+        heldObj.transform.parent = null; // Удалить родительский объект
+
+        // Применяем силу броска
         heldObjRb.AddForce(transform.forward * throwForce);
+
+        // Сбрасываем объект
         heldObj = null;
     }
-    void StopClipping() //function only called when dropping/throwing
+    void StopClipping()
     {
-        var clipRange = Vector3.Distance(heldObj.transform.position, transform.position); //distance from holdPos to the camera
-        //have to use RaycastAll as object blocks raycast in center screen
-        //RaycastAll returns array of all colliders hit within the cliprange
-        RaycastHit[] hits;
-        hits = Physics.RaycastAll(transform.position, transform.TransformDirection(Vector3.forward), clipRange);
-        //if the array length is greater than 1, meaning it has hit more than just the object we are carrying
-        if (hits.Length > 1)
+        // Проверяем коллизии с объектами перед объектом удержания
+        RaycastHit hit;
+        if (Physics.Raycast(holdPos.position, -transform.forward, out hit, 0.5f)) // расстояние 0.5 — настроить под размеры объекта
         {
-            //change object position to camera position 
-            heldObj.transform.position = transform.position + new Vector3(-0f, -0.5f, -0f); //offset slightly downward to stop object dropping above player 
-            //if your player is small, change the -0.5f to a smaller number (in magnitude) ie: -0.1f
+            // Если обнаружено препятствие, переместить объект чуть ближе к игроку
+            heldObj.transform.position = hit.point + transform.forward * 0.1f; // 0.1f — расстояние от препятствия
         }
     }
-    
+
+
 }

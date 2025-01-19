@@ -5,11 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - CanPickUp
+  - SecondTube
+  - FirstTube
+  - FirstCube
+  - SecondCube
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - HoldPos
+  - HoldObject
   - Water
   - UI
   - 

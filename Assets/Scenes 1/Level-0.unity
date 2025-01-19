@@ -1772,7 +1772,7 @@ GameObject:
   - component: {fileID: 438692063}
   m_Layer: 0
   m_Name: greenCube
-  m_TagString: Untagged
+  m_TagString: SecondCube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3332,6 +3332,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 49652848516915413, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 998147500283778342, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
       propertyPath: pickUpArray.Array.size
       value: 2
@@ -3343,6 +3347,10 @@ PrefabInstance:
     - target: {fileID: 998147500283778342, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
       propertyPath: pickUpArray.Array.data[1]
       value: redCube
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774223647749550379, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6877125369929831724, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
       propertyPath: m_Name
@@ -3404,9 +3412,10 @@ GameObject:
   - component: {fileID: 639050549}
   - component: {fileID: 639050548}
   - component: {fileID: 639050550}
+  - component: {fileID: 639050551}
   m_Layer: 0
   m_Name: greenTube
-  m_TagString: Untagged
+  m_TagString: SecondTube
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3470,6 +3479,19 @@ MonoBehaviour:
   cubesArray:
   - greenCube
   - redCube
+--- !u!114 &639050551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639050547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6496909ff6149cb47be086c2a3f1f837, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GreenCube: {fileID: 432020862}
 --- !u!43 &666080542
 Mesh:
   m_ObjectHideFlags: 0
@@ -4662,9 +4684,10 @@ GameObject:
   - component: {fileID: 1351248363}
   - component: {fileID: 1351248362}
   - component: {fileID: 1351248364}
+  - component: {fileID: 1351248365}
   m_Layer: 0
   m_Name: redTube
-  m_TagString: Untagged
+  m_TagString: FirstTube
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4728,6 +4751,19 @@ MonoBehaviour:
   cubesArray:
   - greenCube
   - redCube
+--- !u!114 &1351248365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351248361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 754cadc2b0901a648a77a204b2361df9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RedCube: {fileID: 432020862}
 --- !u!43 &1620658354
 Mesh:
   m_ObjectHideFlags: 0
@@ -6081,7 +6117,7 @@ GameObject:
   - component: {fileID: 2053200117}
   m_Layer: 0
   m_Name: redCube
-  m_TagString: Untagged
+  m_TagString: FirstCube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
