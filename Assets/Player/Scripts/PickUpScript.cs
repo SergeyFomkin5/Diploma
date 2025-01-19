@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PickUpScript : MonoBehaviour
 {
 
-     public GameObject player;
+    public GameObject player;
     public Transform holdPos;
     //if you copy from below this point, you are legally required to like the video
     public float throwForce = 500f; //force at which the object is thrown at
@@ -21,6 +22,8 @@ public class PickUpScript : MonoBehaviour
     //we want to disable the player looking around when rotating the object
     //example below 
     Player_CameraRotation mouseLookScript;
+
+    public string[] pickUpArray;
     void Start()
     {
         //LayerNumber = LayerMask.NameToLayer("HoldLayer"); //if your holdLayer is named differently make sure to change this ""
@@ -38,8 +41,9 @@ public class PickUpScript : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickUpRange))
                 {
+                    string objectName = hit.transform.gameObject.name;
                     //make sure pickup tag is attached
-                    if (hit.transform.gameObject.tag == "CanPickUp")
+                    if (pickUpArray.Contains(objectName))
                     {
                         //pass in object hit into the PickUpObject function
                         PickUpObject(hit.transform.gameObject);
@@ -107,8 +111,11 @@ public class PickUpScript : MonoBehaviour
             float XaxisRotation = Input.GetAxis("Mouse X") * rotationSensitivity;
             float YaxisRotation = Input.GetAxis("Mouse Y") * rotationSensitivity;
             //rotate the object depending on mouse X-Y Axis
-            heldObj.transform.Rotate(Vector3.down, XaxisRotation);
-            heldObj.transform.Rotate(Vector3.right, YaxisRotation);
+            // Вращение лево/право (глобальная ось Y)
+            heldObj.transform.Rotate(Vector3.up, -XaxisRotation, Space.World);
+
+            // Вращение вперёд/назад (глобальная ось Z)
+            heldObj.transform.Rotate(Vector3.forward, YaxisRotation, Space.World);
         }
         else
         {

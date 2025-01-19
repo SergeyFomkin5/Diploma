@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class Level_0_DoorOpening : MonoBehaviour
@@ -14,25 +15,24 @@ public class Level_0_DoorOpening : MonoBehaviour
     [SerializeField] private Animator RedCube;
     [SerializeField] private Animator GreenCube;
 
+    public string[] cubesArray;
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == greenCube)
-        {
-            GreenCube.SetTrigger("GreenCube");
-        }
-        if (other.gameObject == redCube)
-        {
-            RedCube.SetTrigger("RedCube");
-        }
+        //foreach (string cubes in cubesArray)
+        //{
+        //    if ()
+        //    {
+        //        Debug.Log("enter");
+        //        RedCube.SetTrigger("GreenCube");
+        //    }
+        //    if ((other.gameObject.name == "redCube") && other.gameObject.CompareTag("SecondCube").Equals("SecondTube"))
+        //    {
+        //        Debug.Log("enter");
+        //        GreenCube.SetTrigger("RedCube");
+        //    }
+        //}
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if ((other.gameObject == greenCube) && (other.gameObject == redCube))
-        {
-            Debug.Log("Doooooor oooopeeeen!");
-            RedCube.SetTrigger("RedCube");
-            GreenCube.SetTrigger("GreenCube");
-        }
-    }
+    
 }

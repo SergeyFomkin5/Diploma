@@ -1772,7 +1772,7 @@ GameObject:
   - component: {fileID: 438692063}
   m_Layer: 0
   m_Name: greenCube
-  m_TagString: CanPickUp
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3332,6 +3332,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 998147500283778342, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+      propertyPath: pickUpArray.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 998147500283778342, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+      propertyPath: pickUpArray.Array.data[0]
+      value: greenCube
+      objectReference: {fileID: 0}
+    - target: {fileID: 998147500283778342, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+      propertyPath: pickUpArray.Array.data[1]
+      value: redCube
+      objectReference: {fileID: 0}
     - target: {fileID: 6877125369929831724, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3455,6 +3467,9 @@ MonoBehaviour:
   redCube: {fileID: 2053200116}
   RedCube: {fileID: 432020862}
   GreenCube: {fileID: 432020862}
+  cubesArray:
+  - greenCube
+  - redCube
 --- !u!43 &666080542
 Mesh:
   m_ObjectHideFlags: 0
@@ -4537,10 +4552,11 @@ MonoBehaviour:
   greenTube: {fileID: 639050548}
   greenCubeIn: 0
   redCubeIn: 0
-  greenCube: {fileID: 438692062}
-  redCube: {fileID: 2053200116}
+  greenCube: {fileID: 0}
+  redCube: {fileID: 0}
   RedCube: {fileID: 432020862}
   GreenCube: {fileID: 432020862}
+  cubesArray: []
 --- !u!1 &1272160852
 GameObject:
   m_ObjectHideFlags: 0
@@ -4709,6 +4725,9 @@ MonoBehaviour:
   redCube: {fileID: 2053200116}
   RedCube: {fileID: 432020862}
   GreenCube: {fileID: 432020862}
+  cubesArray:
+  - greenCube
+  - redCube
 --- !u!43 &1620658354
 Mesh:
   m_ObjectHideFlags: 0
@@ -6062,7 +6081,7 @@ GameObject:
   - component: {fileID: 2053200117}
   m_Layer: 0
   m_Name: redCube
-  m_TagString: CanPickUp
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
