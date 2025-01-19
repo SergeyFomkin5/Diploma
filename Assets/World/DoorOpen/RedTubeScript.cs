@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class RedTubeScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Animator RedCube;
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (other.gameObject.tag == "FirstCube")
+        {
+            Debug.Log("enter");
+            RedCube.SetTrigger("RedCube");
+        }
     }
 }
