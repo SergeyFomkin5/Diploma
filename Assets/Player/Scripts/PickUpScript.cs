@@ -13,10 +13,12 @@ public class PickUpScript : MonoBehaviour
     public float throwForce = 500f; //force at which the object is thrown at
     public float pickUpRange = 5f; //how far the player can pickup the object from
     private float rotationSensitivity = 1f; //how fast/slow the object is rotated in relation to mouse movement
-    private GameObject heldObj; //object which we pick up
-    private Rigidbody heldObjRb; //rigidbody of object we pick up
+    [SerializeField] private GameObject heldObj; //object which we pick up
+    [SerializeField] private Rigidbody heldObjRb; //rigidbody of object we pick up
     private bool canDrop = true; //this is needed so we don't throw/drop object when rotating the object
     private int LayerNumber; //layer index
+    private Vector3 velocity = Vector3.zero; // Для хранения текущей скорости
+
 
     //Reference to script which includes mouse movement of player (looking around)
     //we want to disable the player looking around when rotating the object
@@ -102,14 +104,18 @@ public class PickUpScript : MonoBehaviour
         heldObj = null; // Сбросить ссылку на объект
     }
 
+    private void FixedUpdate()
+    {
+        if (heldObj != null && heldObjRb != null)
+        {
+            MoveObject();
+        }
+    }
+
     void MoveObject()
     {
         Vector3 targetPosition = holdPos.position; // Желаемая позиция объекта
-        Vector3 moveDirection = (targetPosition - heldObj.transform.position); // Направление движения
-        float moveSpeed = 10f; // Скорость перемещения
-
-        // Применяем силу для плавного перемещения объекта к позиции удержания
-        heldObjRb.velocity = moveDirection * moveSpeed;
+        heldObj.transform.position = Vector3.SmoothDamp(heldObj.transform.position, targetPosition, ref velocity, 0.1f); // 0.1f - время затухания
     }
 
     void RotateObject()
