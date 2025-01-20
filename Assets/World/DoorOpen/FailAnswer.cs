@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class FailAnswer : MonoBehaviour
 {
-    [SerializeField] private GameObject message;
+    [SerializeField] private GameObject failMessage;
+    [SerializeField] private GameObject congratulationsMessage;
 
     private GreenTubeScript greenTubeScript;
     private RedTubeScript redTubeScript;
@@ -27,29 +28,40 @@ public class FailAnswer : MonoBehaviour
         // Проверяем, инициализированы ли компоненты перед использованием
         if (greenTubeScript != null && redTubeScript != null)
         {
-            // Проверяем условия активации сообщения
-            if (greenTubeScript.isCorrectAnswer == 2 && redTubeScript.isCorrectAnswer == 2)
+            int greenAnswer = greenTubeScript.isCorrectAnswer;
+            int redAnswer = redTubeScript.isCorrectAnswer;
+
+            // Используем switch для проверки условий активации сообщения
+            switch ((greenAnswer, redAnswer))
             {
-                ShowMessage();
-            }
-            else if (messageCoroutine != null) // Если сообщение активно
-            {
-                HideMessage();
+                case (2, 2):
+                    ShowFailMessage();
+                    break;
+                case (1, 1): // Пример условия для поздравительного сообщения
+                    ShowCongratulationslMessage();
+                    break;
+                default:
+                    if (messageCoroutine != null) // Если сообщение активно
+                    {
+                        HideFailMessage();
+                        HideCongratulationsMessage(); // Убедитесь, что это тоже скрывается
+                    }
+                    break;
             }
         }
     }
 
-    private void ShowMessage()
+    private void ShowFailMessage()
     {
         if (messageCoroutine == null) // Проверяем, активна ли корутина
         {
-            message.SetActive(true);
+            failMessage.SetActive(true);
             Debug.Log("Сообщение активно");
-            messageCoroutine = StartCoroutine(ShowMessageForSeconds(5f));
+            messageCoroutine = StartCoroutine(ShowFailMessageForSeconds(5f));
         }
     }
 
-    private void HideMessage()
+    private void HideFailMessage()
     {
         if (messageCoroutine != null) // Проверяем, активна ли корутина перед остановкой
         {
@@ -57,16 +69,47 @@ public class FailAnswer : MonoBehaviour
             messageCoroutine = null; // Сбрасываем ссылку на корутину
         }
 
-        message.SetActive(false);
+        failMessage.SetActive(false);
         Debug.Log("Сообщение деактивировано");
 
         // Сброс значения isCorrectAnswer только если это необходимо
         greenTubeScript.isCorrectAnswer = 0;
     }
 
-    private IEnumerator ShowMessageForSeconds(float seconds)
+    private IEnumerator ShowFailMessageForSeconds(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        HideMessage(); // Скрываем сообщение после ожидания
+        HideFailMessage(); // Скрываем сообщение после ожидания
+    }
+
+    private IEnumerator ShowCongratulationsMessageForSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        HideCongratulationsMessage(); // Скрываем сообщение после ожидания
+    }
+
+    private void ShowCongratulationslMessage()
+    {
+        if (messageCoroutine == null) // Проверяем, активна ли корутина
+        {
+            congratulationsMessage.SetActive(true);
+            Debug.Log("Поздравительное сообщение активно");
+            messageCoroutine = StartCoroutine(ShowCongratulationsMessageForSeconds(5f));
+        }
+    }
+
+    private void HideCongratulationsMessage()
+    {
+        if (messageCoroutine != null) // Проверяем, активна ли корутина перед остановкой
+        {
+            StopCoroutine(messageCoroutine); // Останавливаем корутину
+            messageCoroutine = null; // Сбрасываем ссылку на корутину
+        }
+
+        congratulationsMessage.SetActive(false);
+        Debug.Log("Поздравительное сообщение деактивировано");
+
+        // Сброс значения isCorrectAnswer только если это необходимо
+        greenTubeScript.isCorrectAnswer = 0;
     }
 }
