@@ -1,64 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
+
 {
-    [SerializeField] GameObject mainMenu;
-    [SerializeField] GameObject settingsMenu;
-    [SerializeField] GameObject levelsMenu;
+    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject levelsMenu;
 
-    private GameObject activeMenu;
-    public void btnPLay()
+    private void Start()
     {
-        levelsMenu.SetActive(true);
-        mainMenu.SetActive(false);
+        // Убедитесь, что все меню отключены, кроме главного
+        settingsMenu.SetActive(false);
+        levelsMenu.SetActive(false);
+        mainMenu.SetActive(true);
     }
 
-    public void btnSettings()
+    public void ShowMainMenu()
     {
+        mainMenu.SetActive(true);
+        settingsMenu.SetActive(false);
+        levelsMenu.SetActive(false);
+    }
+
+    public void ShowSettingsMenu()
+    {
+        mainMenu.SetActive(false);
         settingsMenu.SetActive(true);
-        mainMenu.SetActive(false);
+        levelsMenu.SetActive(false);
     }
 
-    public void btnQuit()
+    public void ShowLevelsMenu()
     {
-        Debug.Log("quit");
+        mainMenu.SetActive(false);
+        settingsMenu.SetActive(false);
+        levelsMenu.SetActive(true);
+    }
+
+    public void selectLevel_0()
+    {
+        SceneManager.LoadScene("Level-0");
+    }
+
+    public void Quit()
+    {
         Application.Quit();
     }
-
-    //void Update()
-    //{
-    //    // Проверяем нажатие клавиши Escape для возврата в предыдущее меню
-    //    if (Input.GetKeyDown(KeyCode.Escape))
-    //    {
-    //        BackToPreviousMenu();
-    //    }
-    //}
-
-    //public void ShowMenu(GameObject menu)
-    //{
-    //    // Скрываем текущее активное меню
-    //    if (activeMenu != null)
-    //    {
-    //        activeMenu.SetActive(false);
-    //    }
-
-    //    // Показываем новое меню и запоминаем его как активное
-    //    menu.SetActive(true);
-    //    activeMenu = menu;
-    //}
-
-    //public void BackToPreviousMenu()
-    //{
-    //    if (activeMenu == levelsMenu)
-    //    {
-    //        ShowMenu(mainMenu);
-    //    }
-    //    else if (activeMenu == settingsMenu)
-    //    {
-    //        ShowMenu(mainMenu);
-    //    }
-    //    // Добавьте дополнительные условия для других меню, если нужно
-    //}
 }
+
