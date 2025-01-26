@@ -18,6 +18,25 @@ public class MenuController : MonoBehaviour
         mainMenu.SetActive(true);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // ≈сли открыто меню настроек, закрываем его
+            if (settingsMenu.activeSelf)
+            {
+                settingsMenu.SetActive(false);
+                mainMenu.SetActive(true);
+            }
+            // ≈сли открыто меню уровней, закрываем его
+            else if (levelsMenu.activeSelf)
+            {
+                levelsMenu.SetActive(false);
+                mainMenu.SetActive(true);
+            }
+        }
+    }
+
     public void ShowMainMenu()
     {
         mainMenu.SetActive(true);
