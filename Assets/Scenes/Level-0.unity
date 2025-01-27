@@ -158,8 +158,6 @@ Transform:
   - {fileID: 432020861}
   - {fileID: 234591841}
   - {fileID: 503808646}
-  - {fileID: 639050549}
-  - {fileID: 1351248363}
   - {fileID: 2053200121}
   - {fileID: 438692067}
   m_Father: {fileID: 0}
@@ -1360,7 +1358,8 @@ Transform:
   m_LocalPosition: {x: -17.402298, y: -5.1478586, z: -29.45578}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1351248363}
   m_Father: {fileID: 84017387}
   m_LocalEulerAnglesHint: {x: 45, y: 180, z: 90}
 --- !u!43 &318897125
@@ -3321,7 +3320,8 @@ Transform:
   m_LocalPosition: {x: -17.402298, y: -5.1478586, z: -26.54578}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 639050549}
   m_Father: {fileID: 84017387}
   m_LocalEulerAnglesHint: {x: 45, y: 180, z: 90}
 --- !u!1001 &620047286
@@ -3528,12 +3528,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 639050547}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -17.12, y: -5.0978584, z: -28.710125}
-  m_LocalScale: {x: 1, y: 2, z: 1.89}
+  m_LocalRotation: {x: -0.6532815, y: -0.6532815, z: 0.27059805, w: 0.27059805}
+  m_LocalPosition: {x: 1.5657784, y: 0.28229716, z: 1.4950676}
+  m_LocalScale: {x: 1, y: 2, z: 1.8899995}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 84017387}
+  m_Father: {fileID: 503808646}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &639050551
 MonoBehaviour:
@@ -4780,12 +4780,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1351248361}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -17.12, y: -5.0978584, z: -31.710125}
-  m_LocalScale: {x: 1, y: 2, z: 1.89}
+  m_LocalRotation: {x: -0.6532815, y: -0.6532815, z: 0.27059805, w: 0.27059805}
+  m_LocalPosition: {x: 1.6294181, y: 0.28229716, z: 1.5587075}
+  m_LocalScale: {x: 1, y: 2, z: 1.8899995}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 84017387}
+  m_Father: {fileID: 234591841}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1351248365
 MonoBehaviour:
