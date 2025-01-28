@@ -167,14 +167,14 @@ public class PickUpScript : MonoBehaviour
     }
     void StopClipping()
     {
-        // Проверяем коллизии с объектами перед объектом удержания
         RaycastHit hit;
         if (Physics.Raycast(holdPos.position, -transform.forward, out hit, 0.5f)) // расстояние 0.5 — настроить под размеры объекта
         {
-            // Если обнаружено препятствие, переместить объект чуть ближе к игроку
-            heldObj.transform.position = hit.point + transform.forward * 0.1f; // 0.1f — расстояние от препятствия
+            // Если обнаружено препятствие, переместить объект чуть дальше от него
+            heldObj.transform.position = hit.point + transform.forward * 0.2f; // Увеличьте расстояние до 0.2f или больше
         }
     }
+
 
 
 }
