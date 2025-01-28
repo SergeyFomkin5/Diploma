@@ -9,6 +9,9 @@ TagManager:
   - FirstTube
   - FirstCube
   - SecondCube
+  - ThirdCube
+  - FourthCube
+  - FifthCube
   layers:
   - Default
   - TransparentFX
