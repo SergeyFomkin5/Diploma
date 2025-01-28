@@ -8,7 +8,7 @@ public class IntTest : MonoBehaviour
     public int isCorrectAnswer = 0;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "SecondCube")
+        if (other.gameObject.tag == "FirstCube")
         {
             Debug.Log("enter");
             IntCube.SetTrigger("IntCube");
