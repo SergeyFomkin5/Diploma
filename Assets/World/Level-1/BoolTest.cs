@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IntTest : MonoBehaviour
+public class BoolTest : MonoBehaviour
 {
-    [SerializeField] private Animator IntCube;
+    [SerializeField] private Animator BoolCube;
     public int isCorrectAnswer = 0;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "SecondCube")
         {
             Debug.Log("enter");
-            IntCube.SetTrigger("IntCube");
+            BoolCube.SetTrigger("BoolCube");
             isCorrectAnswer = 1;
         }
         else
