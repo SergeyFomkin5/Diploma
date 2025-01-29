@@ -946,10 +946,7 @@ MonoBehaviour:
   pickUpRange: 5
   heldObj: {fileID: 0}
   heldObjRb: {fileID: 0}
-  pickUpArray:
-  - greenCube
-  - redCube
-  - Cube
+  pickUpArray: []
 --- !u!1 &5067989304919857445
 GameObject:
   m_ObjectHideFlags: 0
