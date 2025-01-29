@@ -16,6 +16,7 @@ public class BoolTest : MonoBehaviour
         }
         else
         {
+            Debug.Log("FailBool");
             isCorrectAnswer = 2;
         }
     }

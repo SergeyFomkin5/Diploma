@@ -6997,6 +6997,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9022189037677800056, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8170,6 +8174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2133364552}
   - component: {fileID: 2133364553}
+  - component: {fileID: 2133364554}
   m_Layer: 0
   m_Name: WorldActions
   m_TagString: Untagged
@@ -8206,6 +8211,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   failMessage: {fileID: 1520839458}
   congratulationsMessage: {fileID: 399011987}
+--- !u!114 &2133364554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133364551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 768b402d52c482547a0b1bef7f03af55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intCube: {fileID: 497464441}
+  boolCube: {fileID: 1161499320}
+  stringCube: {fileID: 1609575837}
+  charCube: {fileID: 682428142}
+  floatCube: {fileID: 113349753}
 --- !u!1001 &1510767647355384137
 PrefabInstance:
   m_ObjectHideFlags: 0
