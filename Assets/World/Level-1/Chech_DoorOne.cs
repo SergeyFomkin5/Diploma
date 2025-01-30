@@ -1,32 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class Chech_DoorOne : MonoBehaviour
+public class Check_Door : MonoBehaviour
 {
-    private PressurePlateScript_FirstDoor presurePlates;
-
     [SerializeField] private GameObject firstDoorAnimation;
-    // Start is called before the first frame update
-    void Start()
-    {
-        presurePlates = FindAnyObjectByType<PressurePlateScript_FirstDoor>();
-    }
 
-    // Update is called once per frame
     void Update()
     {
-        CheckFirstDoor();
+        CheckDoors();
     }
 
-    private void CheckFirstDoor()
+    private void CheckDoors()
     {
-        var checkSum = presurePlates.cubeOneCount + presurePlates.flowerCount;
+        bool isFlowerOnFirstPlate = PressurePlate_FirstDoor.flowerCount == 2;
+        bool isCubeOnFirstPlate = PressurePlate_FirstDoor.cubeOneCount == 1;
 
-        if (checkSum == 3)
+        bool isFlowerOnSecondPlate = PressurePlate_FirstDoor_SecondPlate.flowerCount == 2;
+        bool isCubeOnSecondPlate = PressurePlate_FirstDoor_SecondPlate.cubeTwoCount == 1;
+
+        // Проверяем, находится ли цветок на одной плитке, а куб на другой
+        if ((isFlowerOnFirstPlate && isCubeOnSecondPlate) || (isCubeOnFirstPlate && isFlowerOnSecondPlate) ||
+            (isFlowerOnFirstPlate && !isCubeOnFirstPlate && !isCubeOnSecondPlate) ||
+            (isFlowerOnSecondPlate && !isCubeOnFirstPlate && !isCubeOnSecondPlate))
         {
             firstDoorAnimation.SetActive(false);
+            Debug.Log("Дверь открыта!");
         }
     }
 }
