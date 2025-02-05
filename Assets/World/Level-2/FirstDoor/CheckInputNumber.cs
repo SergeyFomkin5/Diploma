@@ -1,63 +1,54 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class CheckInputNumber : MonoBehaviour
 {
-    public TMP_InputField inputField; // Reference to the InputField
-    public TMP_Text resultText; // Reference to the Text for displaying results
-    public GameObject therminalPanel; // Panel for terminal interaction
-    public GameObject eButtonAction; // Button action prompt
-    public GameObject therminalTriggerZone; // Trigger zone for terminal
+    public TMP_InputField inputField; // Поле для ввода числа
+    public TMP_Text resultText; // Текст для отображения результата
+    public GameObject therminalPanel; // Панель терминала
+    public GameObject eButtonAction; // Подсказка "Нажмите E"
+    public Collider therminalTriggerZone; // Зона триггера терминала
 
-    private Collider triggerZoneCollider; // Reference to the BoxCollider of therminalTriggerZone
-
-    void Start()
-    {
-        // Получаем Collider из therminalTriggerZone
-        if (therminalTriggerZone != null)
-        {
-            triggerZoneCollider = therminalTriggerZone.GetComponent<Collider>();
-        }
-        else
-        {
-            Debug.LogError("Therminal Trigger Zone is not assigned!");
-        }
-    }
+    private bool isPlayerInTrigger = false; // Флаг, находится ли игрок в зоне триггера
 
     void Update()
     {
-        // Проверяем, нажата ли клавиша Enter
+        // Проверяем, нажата ли клавиша Enter (для отправки числа)
         if (Input.GetKeyDown(KeyCode.Return))
         {
             OnSubmit();
         }
 
-        // Проверяем, нажата ли клавиша E и активен ли eButtonAction
-        if (Input.GetKeyDown(KeyCode.E) && eButtonAction.activeSelf)
+        // Проверяем, нажата ли клавиша E и игрок находится в зоне триггера
+        if (Input.GetKeyDown(KeyCode.E) && isPlayerInTrigger)
         {
-            therminalPanel.SetActive(true);
-            eButtonAction.SetActive(false);
+            therminalPanel.SetActive(true); // Открываем панель терминала
+            eButtonAction.SetActive(false); // Скрываем подсказку "Нажмите E"
+            Debug.Log("Terminal panel opened.");
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        // Проверяем, находится ли игрок в зоне триггера therminalTriggerZone
-        if (triggerZoneCollider != null && other.gameObject.CompareTag("Player") && !therminalPanel.activeSelf)
+        // Проверяем, если игрок входит в зону триггера
+        if (other.CompareTag("Player"))
         {
-            eButtonAction.SetActive(true);
+            isPlayerInTrigger = true; // Устанавливаем флаг
+            eButtonAction.SetActive(true); // Показываем подсказку "Нажмите E"
+            Debug.Log("Player entered the trigger zone.");
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        // Скрываем подсказку при выходе игрока из зоны триггера
-        if (triggerZoneCollider != null && other.gameObject.CompareTag("Player"))
+        // Проверяем, если игрок выходит из зоны триггера
+        if (other.CompareTag("Player"))
         {
-            eButtonAction.SetActive(false);
+            isPlayerInTrigger = false; // Сбрасываем флаг
+            eButtonAction.SetActive(false); // Скрываем подсказку "Нажмите E"
+            Debug.Log("Player exited the trigger zone.");
         }
     }
 
@@ -73,16 +64,19 @@ public class CheckInputNumber : MonoBehaviour
             if (number > 5)
             {
                 resultText.text = "Success! You entered: " + number;
-                therminalPanel.SetActive(false);
+                therminalPanel.SetActive(false); // Закрываем панель терминала
+                Debug.Log("Valid number entered: " + number);
             }
             else
             {
                 resultText.text = "Error: The number must be greater than 5.";
+                Debug.Log("Invalid number: " + number);
             }
         }
         else
         {
             resultText.text = "Error: Please enter a valid number.";
+            Debug.Log("Invalid input: " + input);
         }
     }
 }
