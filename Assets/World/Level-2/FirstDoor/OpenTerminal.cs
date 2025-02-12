@@ -25,6 +25,29 @@ public class OpenTerminal : MonoBehaviour
         Cursor.visible = false;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            isInTrigger = true;
+            eButton.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            isInTrigger = false;
+            eButton.SetActive(false);
+
+            if (isTerminalActive)
+            {
+                CloseTerminal();
+            }
+        }
+    }
+
     private void Update()
     {
         // Открытие терминала
@@ -37,6 +60,12 @@ public class OpenTerminal : MonoBehaviour
         if (isTerminalActive && Input.GetKeyDown(KeyCode.Escape))
         {
             CloseTerminal();
+        }
+
+        // Проверка ввода при нажатии Enter
+        if (isTerminalActive && Input.GetKeyDown(KeyCode.Return))
+        {
+            ValidateInput();
         }
     }
 
@@ -64,7 +93,7 @@ public class OpenTerminal : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        ValidateInput(); // Проверка введенных данных при закрытии
+        // Удаляем вызов ValidateInput() из CloseTerminal()
     }
 
     private void ValidateInput()
@@ -73,7 +102,7 @@ public class OpenTerminal : MonoBehaviour
 
         switch (gameObject.name)
         {
-            case "Terminal (1)":
+            case "Terminal_1":
                 // Проверка числа для первого терминала
                 if (int.TryParse(inputText, out int number))
                 {
@@ -93,11 +122,11 @@ public class OpenTerminal : MonoBehaviour
                 }
                 break;
 
-            case "Terminal (2)":
+            case "Terminal_2":
                 // Проверка слова для второго терминала
                 if (inputText == "!isWorking")
                 {
-                    door_2.SetTrigger("Door-2");
+                    door_2.SetTrigger("Door-2"); // Убедитесь в существовании Door-2 анимации!
                     Debug.Log("Успех! Введено правильное слово.");
                 }
                 else
@@ -106,13 +135,11 @@ public class OpenTerminal : MonoBehaviour
                 }
                 break;
 
-            case "Terminal (3)": // Исправлено на "Terminal3"
+            case "Terminal_3":
                 // Проверка цвета для третьего терминала
                 switch (inputText.ToLower()) // Делаем ввод нечувствительным к регистру
                 {
-                    case "red":
-                    case "green":
-                    case "purple":
+                    case "red green purple":
                         door_3.SetTrigger("Door-3");
                         Debug.Log("Успех! Введено правильное слово.");
                         break;
