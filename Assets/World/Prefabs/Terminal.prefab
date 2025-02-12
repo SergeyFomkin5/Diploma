@@ -13,10 +13,11 @@ GameObject:
   - component: {fileID: 8314519203584165958}
   - component: {fileID: 6712300806728110284}
   - component: {fileID: 2551847814381201286}
+  - component: {fileID: 4742149940423441985}
   - component: {fileID: 5427012823088773246}
   - component: {fileID: 6617991192735235910}
   m_Layer: 0
-  m_Name: Therminal
+  m_Name: Terminal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -250,7 +251,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2680
+  m_VersionIndex: 2683
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -272,7 +273,9 @@ MonoBehaviour:
   eButton: {fileID: 0}
   player_Movement: {fileID: 0}
   player_CameraRotation: {fileID: 0}
-  door: {fileID: 0}
+  door_1: {fileID: 0}
+  door_2: {fileID: 0}
+  door_3: {fileID: 0}
 --- !u!114 &6712300806728110284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,6 +346,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4742149940423441985
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4944093162207514159}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4, y: 2, z: 4}
+  m_Center: {x: -0.5, y: 1, z: 1}
 --- !u!33 &5427012823088773246
 MeshFilter:
   m_ObjectHideFlags: 0
