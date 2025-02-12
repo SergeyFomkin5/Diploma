@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5864307936953469069}
   - component: {fileID: 2897551572364163218}
+  - component: {fileID: 8314519203584165958}
   - component: {fileID: 6712300806728110284}
   - component: {fileID: 2551847814381201286}
   - component: {fileID: 5427012823088773246}
@@ -254,6 +255,24 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!114 &8314519203584165958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4944093162207514159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c7585115377f7146b7d34d81aa7485f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terminalUI: {fileID: 0}
+  inputField: {fileID: 0}
+  eButton: {fileID: 0}
+  player_Movement: {fileID: 0}
+  player_CameraRotation: {fileID: 0}
+  door: {fileID: 0}
 --- !u!114 &6712300806728110284
 MonoBehaviour:
   m_ObjectHideFlags: 0
