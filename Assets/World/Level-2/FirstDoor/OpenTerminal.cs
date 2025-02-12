@@ -10,7 +10,9 @@ public class OpenTerminal : MonoBehaviour
     [SerializeField] private GameObject eButton; // Подсказка кнопки E
     [SerializeField] private Player_movement player_Movement;
     [SerializeField] private Player_CameraRotation player_CameraRotation;
-    [SerializeField] private Animator door;
+    [SerializeField] private Animator door_1;
+    [SerializeField] private Animator door_2;
+    [SerializeField] private Animator door_3;
 
     private bool isInTrigger = false; // В зоне терминала
     private bool isTerminalActive = false; // Терминал открыт
@@ -65,47 +67,64 @@ public class OpenTerminal : MonoBehaviour
         ValidateInput(); // Проверка введенных данных при закрытии
     }
 
-    // Вызывается при изменении текста в поле ввода (можно подключить к кнопке)
-    public void ValidateInput()
+    private void ValidateInput()
     {
-        if (int.TryParse(inputField.text, out int number))
-        {
-            if (number > 5)
-            {
-                door.SetTrigger("Door-1");
-                Debug.Log("Успех! Введено число: " + number);
-            }
-            else
-            {
-                Debug.Log("Ошибка: Число должно быть больше 5");
-            }
-        }
-        else
-        {
-            Debug.Log("Ошибка: Введите целое число");
-        }
-    }
+        string inputText = inputField.text.Trim(); // Убираем лишние пробелы
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
+        switch (gameObject.name)
         {
-            isInTrigger = true;
-            eButton.SetActive(true);
-        }
-    }
+            case "Terminal (1)":
+                // Проверка числа для первого терминала
+                if (int.TryParse(inputText, out int number))
+                {
+                    if (number > 5)
+                    {
+                        door_1.SetTrigger("Door-1");
+                        Debug.Log($"Успех! Введено число: {number}");
+                    }
+                    else
+                    {
+                        Debug.Log("Ошибка: Число должно быть больше 5");
+                    }
+                }
+                else
+                {
+                    Debug.Log("Ошибка: Введите целое число");
+                }
+                break;
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            isInTrigger = false;
-            eButton.SetActive(false);
+            case "Terminal (2)":
+                // Проверка слова для второго терминала
+                if (inputText == "!isWorking")
+                {
+                    door_2.SetTrigger("Door-2");
+                    Debug.Log("Успех! Введено правильное слово.");
+                }
+                else
+                {
+                    Debug.Log("Ошибка: Введите '!isWorking'");
+                }
+                break;
 
-            if (isTerminalActive)
-            {
-                CloseTerminal();
-            }
+            case "Terminal (3)": // Исправлено на "Terminal3"
+                // Проверка цвета для третьего терминала
+                switch (inputText.ToLower()) // Делаем ввод нечувствительным к регистру
+                {
+                    case "red":
+                    case "green":
+                    case "purple":
+                        door_3.SetTrigger("Door-3");
+                        Debug.Log("Успех! Введено правильное слово.");
+                        break;
+                    default:
+                        Debug.Log("Ошибка: Введите 'red', 'green' или 'purple'");
+                        break;
+                }
+                break;
+
+            default:
+                Debug.Log("Ошибка: Терминал не опознан.");
+                break;
         }
     }
 }
