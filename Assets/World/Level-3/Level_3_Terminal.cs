@@ -13,6 +13,9 @@ public class Level_3_Terminal : MonoBehaviour
     [SerializeField] private Player_CameraRotation player_CameraRotation;
     [SerializeField] private Animator door_1;
     [SerializeField] private Animator firstRoomRobot;
+    [SerializeField] private Animator door_2;
+    [SerializeField] private Animator SecondRoomRobotOne;
+    [SerializeField] private Animator SecondRoomRoboTwo;
     //[SerializeField] private Animator door_2;
     //[SerializeField] private Animator door_3;
 
@@ -103,9 +106,13 @@ public class Level_3_Terminal : MonoBehaviour
         string inputText = inputField.text.Trim(); // Убираем лишние пробелы и приводим к нижнему регистру
         string[] words = inputText.Split(' '); // Разбиваем текст на отдельные слова
 
-        bool hasNotTouchTheWall = false;
+        bool hasNotTouchTheWall_1 = false;
         bool hasGoForward = false;
         bool hasTapTheButton = false;
+
+        bool goLeft = false;
+        bool goRight = false;
+        bool tapTheButon = false;
 
 
         switch (gameObject.name)
@@ -116,9 +123,9 @@ public class Level_3_Terminal : MonoBehaviour
                 {
                     if (word == "notTouchTheWall()") // Сравниваем с нижним регистром
                     {
-                        hasNotTouchTheWall = true;
+                        hasNotTouchTheWall_1 = true;
                     }
-                    else if (word == "goForward()") // Сравниваем с нижним регистром
+                    else if (word == "goLeft()") // Сравниваем с нижним регистром
                     {
                         hasGoForward = true;
                     }
@@ -128,7 +135,7 @@ public class Level_3_Terminal : MonoBehaviour
                     }
                 }
 
-                if (hasNotTouchTheWall && hasGoForward && hasTapTheButton)
+                if (hasNotTouchTheWall_1 && hasGoForward && hasTapTheButton)
                 {
                     door_1.SetTrigger("DoorOpen");
                     firstRoomRobot.SetTrigger("Correct");
@@ -140,18 +147,35 @@ public class Level_3_Terminal : MonoBehaviour
                 }
                 break;
 
-            //case "Terminal_2":
-            //    // Проверка слова для второго терминала
-            //    if (inputText == "!isWorking")
-            //    {
-            //        door_2.SetTrigger("Door-2"); // Убедитесь в существовании Door-2 анимации!
-            //        Debug.Log("Успех! Введено правильное слово.");
-            //    }
-            //    else
-            //    {
-            //        Debug.Log("Ошибка: Введите '!isWorking'");
-            //    }
-            //    break;
+            case "Terminal_2":
+                foreach (string word in words)
+                {
+                    if (word == "goLeft()") // Сравниваем с нижним регистром
+                    {
+                        goLeft = true;
+                    }
+                    else if (word == "goRight()") // Сравниваем с нижним регистром
+                    {
+                        goRight = true;
+                    }
+                    else if (word == "tapTheButton()") // Сравниваем с нижним регистром
+                    {
+                        tapTheButon = true;
+                    }
+                }
+
+                if (goLeft && goRight && tapTheButon)
+                {
+                    door_2.SetTrigger("DoorOpen");
+                    SecondRoomRobotOne.SetTrigger("Correct");
+                    SecondRoomRoboTwo.SetTrigger("Correct");
+                    Debug.Log("Успех!");
+                }
+                else
+                {
+                    Debug.Log("Ошибка");
+                }
+                break;
 
             //case "Terminal_3":
             //    // Проверка цвета для третьего терминала
