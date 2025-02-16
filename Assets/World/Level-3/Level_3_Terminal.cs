@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class Level_3_Terminal : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private GameObject terminalUI; // Ссылка на UI терминала
-    [SerializeField] private TMP_InputField inputField; // Поле ввода числа
-    [SerializeField] private GameObject eButton; // Подсказка кнопки E
+    [SerializeField] private GameObject terminalUI;
+    [SerializeField] private TMP_InputField inputField;
+    [SerializeField] private GameObject eButton;
     [SerializeField] private Player_movement player_Movement;
     [SerializeField] private Player_CameraRotation player_CameraRotation;
     [SerializeField] private Animator door_1;
@@ -16,11 +14,16 @@ public class Level_3_Terminal : MonoBehaviour
     [SerializeField] private Animator door_2;
     [SerializeField] private Animator SecondRoomRobotOne;
     [SerializeField] private Animator SecondRoomRoboTwo;
-    //[SerializeField] private Animator door_2;
-    //[SerializeField] private Animator door_3;
+    [SerializeField] private Animator door_3;
+    [SerializeField] private Animator ThirdRoomRobot;
 
-    private bool isInTrigger = false; // В зоне терминала
-    private bool isTerminalActive = false; // Терминал открыт
+    private bool isInTrigger = false;
+    private bool isTerminalActive = false;
+
+    // Счетчики для Terminal_3
+    private int goForward = 0;
+    private int turnRight = 0;
+    private int turnLeft = 0;
 
     private void Start()
     {
@@ -55,19 +58,16 @@ public class Level_3_Terminal : MonoBehaviour
 
     private void Update()
     {
-        // Открытие терминала
         if (isInTrigger && Input.GetKeyDown(KeyCode.E) && !isTerminalActive)
         {
             ShowTerminal();
         }
 
-        // Закрытие терминала
         if (isTerminalActive && Input.GetKeyDown(KeyCode.Escape))
         {
             CloseTerminal();
         }
 
-        // Проверка ввода при нажатии Enter
         if (isTerminalActive && Input.GetKeyDown(KeyCode.Return))
         {
             ValidateInput();
@@ -103,110 +103,100 @@ public class Level_3_Terminal : MonoBehaviour
 
     private void ValidateInput()
     {
-        string inputText = inputField.text.Trim(); // Убираем лишние пробелы и приводим к нижнему регистру
-        string[] words = inputText.Split(' '); // Разбиваем текст на отдельные слова
-
-        bool hasNotTouchTheWall_1 = false;
-        bool hasGoForward = false;
-        bool hasTapTheButton = false;
-
-        bool goLeft = false;
-        bool goRight = false;
-        bool tapTheButon = false;
-
+        string inputText = inputField.text.Trim(); // Убираем лишние пробелы
 
         switch (gameObject.name)
         {
             case "Terminal_1":
-                // Проверка числа для первого терминала
-                foreach (string word in words)
-                {
-                    if (word == "notTouchTheWall()") // Сравниваем с нижним регистром
-                    {
-                        hasNotTouchTheWall_1 = true;
-                    }
-                    else if (word == "goLeft()") // Сравниваем с нижним регистром
-                    {
-                        hasGoForward = true;
-                    }
-                    else if (word == "tapTheButton()") // Сравниваем с нижним регистром
-                    {
-                        hasTapTheButton = true;
-                    }
-                }
-
-                if (hasNotTouchTheWall_1 && hasGoForward && hasTapTheButton)
-                {
-                    door_1.SetTrigger("DoorOpen");
-                    firstRoomRobot.SetTrigger("Correct");
-                    Debug.Log("Успех!");
-                }
-                else
-                {
-                    Debug.Log("Ошибка");
-                }
+                ProcessTerminal1Input(inputText);
                 break;
 
             case "Terminal_2":
-                foreach (string word in words)
-                {
-                    if (word == "goLeft()") // Сравниваем с нижним регистром
-                    {
-                        goLeft = true;
-                    }
-                    else if (word == "goRight()") // Сравниваем с нижним регистром
-                    {
-                        goRight = true;
-                    }
-                    else if (word == "tapTheButton()") // Сравниваем с нижним регистром
-                    {
-                        tapTheButon = true;
-                    }
-                }
-
-                if (goLeft && goRight && tapTheButon)
-                {
-                    door_2.SetTrigger("DoorOpen");
-                    SecondRoomRobotOne.SetTrigger("Correct");
-                    SecondRoomRoboTwo.SetTrigger("Correct");
-                    Debug.Log("Успех!");
-                }
-                else
-                {
-                    Debug.Log("Ошибка");
-                }
+                ProcessTerminal2Input(inputText);
                 break;
 
-            //case "Terminal_3":
-            //    // Проверка цвета для третьего терминала
-            //    switch (inputText.ToLower()) // Делаем ввод нечувствительным к регистру
-            //    {
-            //        case "red green purple":
-            //            door_3.SetTrigger("Door-3");
-            //            Debug.Log("Успех! Введено правильное слово.");
-            //            break;
-            //        default:
-            //            Debug.Log("Ошибка: Введите 'red', 'green' или 'purple'");
-            //            break;
-            //    }
-            //    break;
-            //case "Terminal_4":
-            //    // Проверка цвета для третьего терминала
-            //    switch (inputText.ToLower()) // Делаем ввод нечувствительным к регистру
-            //    {
-            //        case "red green purple":
-            //            door_3.SetTrigger("Door-3");
-            //            Debug.Log("Успех! Введено правильное слово.");
-            //            break;
-            //        default:
-            //            Debug.Log("Ошибка: Введите 'red', 'green' или 'purple'");
-            //            break;
-            //    }
-            //    break;
+            case "Terminal_3":
+                ProcessTerminal3Input(inputText);
+                break;
 
             default:
                 Debug.Log("Ошибка: Терминал не опознан.");
                 break;
         }
+
+        // Очищаем поле ввода после обработки
+        inputField.text = "";
+    }
+
+    private void ProcessTerminal1Input(string inputText)
+    {
+        if (inputText == "notTouchTheWall()" || inputText == "goLeft()" || inputText == "tapTheButton()")
+        {
+            Debug.Log("Все проверки пройдены!");
+            door_1.SetTrigger("DoorOpen");
+            firstRoomRobot.SetTrigger("Correct");
+        }
+        else
+        {
+            Debug.Log("Ошибка: Неверный ввод!");
+        }
+    }
+
+    private void ProcessTerminal2Input(string inputText)
+    {
+        if (inputText == "goLeft()" || inputText == "goRight()" || inputText == "tapTheButton()")
+        {
+            Debug.Log("Все проверки пройдены!");
+            door_2.SetTrigger("DoorOpen");
+            SecondRoomRobotOne.SetTrigger("Correct");
+            SecondRoomRoboTwo.SetTrigger("Correct");
+        }
+        else
+        {
+            Debug.Log("Ошибка: Неверный ввод!");
+        }
+    }
+
+    private void ProcessTerminal3Input(string inputText)
+    {
+        // Обновляем счетчики в зависимости от введенной команды
+        if (inputText == "goForward()")
+        {
+            goForward++;
+            Debug.Log("+1 to goForward");
+        }
+        else if (inputText == "turnRight()")
+        {
+            turnRight++;
+            Debug.Log("+1 to turnRight");
+        }
+        else if (inputText == "turnLeft()")
+        {
+            turnLeft++;
+            Debug.Log("+1 to turnLeft");
+        }
+        else
+        {
+            Debug.Log("Ошибка: Неверный ввод! Ожидается 'goForward()', 'turnRight()', или 'turnLeft()'");
+            return; // Прерываем выполнение, если команда неверная
+        }
+
+        // Проверяем условия после обновления счетчиков
+        if (turnLeft == 2 && turnRight == 2 && goForward == 3)
+        {
+            door_3.SetTrigger("DoorOpen");
+            ThirdRoomRobot.SetTrigger("Correct");
+            Debug.Log("Успех! Все условия выполнены.");
+
+            // Сбрасываем счетчики, если нужно повторное использование терминала
+            ResetCounters();
+        }
+    }
+
+    private void ResetCounters()
+    {
+        goForward = 0;
+        turnRight = 0;
+        turnLeft = 0;
     }
 }
