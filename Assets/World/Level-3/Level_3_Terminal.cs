@@ -16,6 +16,8 @@ public class Level_3_Terminal : MonoBehaviour
     [SerializeField] private Animator SecondRoomRoboTwo;
     [SerializeField] private Animator door_3;
     [SerializeField] private Animator ThirdRoomRobot;
+    [SerializeField] private Animator door_4;
+    [SerializeField] private Animator FourthRoomRobot;
 
     private bool isInTrigger = false;
     private bool isTerminalActive = false;
@@ -24,6 +26,14 @@ public class Level_3_Terminal : MonoBehaviour
     private int goForward = 0;
     private int turnRight = 0;
     private int turnLeft = 0;
+
+    // Новые строки для сада (можно менять)
+    private string[] gardenRows = {
+        "FlowerWFlowerW",
+        "WFlowerFlower",
+        "FlowerFlowerW",
+        "WFlowerWFlower"
+    };
 
     private void Start()
     {
@@ -97,13 +107,11 @@ public class Level_3_Terminal : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
-        // Удаляем вызов ValidateInput() из CloseTerminal()
     }
 
     private void ValidateInput()
     {
-        string inputText = inputField.text.Trim(); // Убираем лишние пробелы
+        string inputText = inputField.text.Trim().ToLower();
 
         switch (gameObject.name)
         {
@@ -119,6 +127,10 @@ public class Level_3_Terminal : MonoBehaviour
                 ProcessTerminal3Input(inputText);
                 break;
 
+            case "Terminal_4":
+                SolveGardenerPuzzle(inputText);
+                break;
+
             default:
                 Debug.Log("Ошибка: Терминал не опознан.");
                 break;
@@ -130,7 +142,7 @@ public class Level_3_Terminal : MonoBehaviour
 
     private void ProcessTerminal1Input(string inputText)
     {
-        if (inputText == "notTouchTheWall()" || inputText == "goLeft()" || inputText == "tapTheButton()")
+        if (inputText == "nottouchthewall()" || inputText == "goleft()" || inputText == "tapthebutton()")
         {
             Debug.Log("Все проверки пройдены!");
             door_1.SetTrigger("DoorOpen");
@@ -144,7 +156,7 @@ public class Level_3_Terminal : MonoBehaviour
 
     private void ProcessTerminal2Input(string inputText)
     {
-        if (inputText == "goLeft()" || inputText == "goRight()" || inputText == "tapTheButton()")
+        if (inputText == "goleft()" || inputText == "goright()" || inputText == "tapthebutton()")
         {
             Debug.Log("Все проверки пройдены!");
             door_2.SetTrigger("DoorOpen");
@@ -159,26 +171,26 @@ public class Level_3_Terminal : MonoBehaviour
 
     private void ProcessTerminal3Input(string inputText)
     {
-        // Обновляем счетчики в зависимости от введенной команды
-        if (inputText == "goForward()")
+        switch (inputText)
         {
-            goForward++;
-            Debug.Log("+1 to goForward");
-        }
-        else if (inputText == "turnRight()")
-        {
-            turnRight++;
-            Debug.Log("+1 to turnRight");
-        }
-        else if (inputText == "turnLeft()")
-        {
-            turnLeft++;
-            Debug.Log("+1 to turnLeft");
-        }
-        else
-        {
-            Debug.Log("Ошибка: Неверный ввод! Ожидается 'goForward()', 'turnRight()', или 'turnLeft()'");
-            return; // Прерываем выполнение, если команда неверная
+            case "goforward()":
+                goForward++;
+                Debug.Log("+1 to goForward");
+                break;
+
+            case "turnright()":
+                turnRight++;
+                Debug.Log("+1 to turnRight");
+                break;
+
+            case "turnleft()":
+                turnLeft++;
+                Debug.Log("+1 to turnLeft");
+                break;
+
+            default:
+                Debug.Log("Ошибка: Неверный ввод! Ожидается 'goForward()', 'turnRight()', или 'TurnLeft()'");
+                return;
         }
 
         // Проверяем условия после обновления счетчиков
@@ -188,7 +200,6 @@ public class Level_3_Terminal : MonoBehaviour
             ThirdRoomRobot.SetTrigger("Correct");
             Debug.Log("Успех! Все условия выполнены.");
 
-            // Сбрасываем счетчики, если нужно повторное использование терминала
             ResetCounters();
         }
     }
@@ -198,5 +209,19 @@ public class Level_3_Terminal : MonoBehaviour
         goForward = 0;
         turnRight = 0;
         turnLeft = 0;
+    }
+
+    private void SolveGardenerPuzzle(string inputText)
+    {
+        if (inputText == "contains")
+        {
+            Debug.Log("Введено правильное слово!");
+            door_4.SetTrigger("DoorOpen");
+            FourthRoomRobot.SetTrigger("Correct");
+        }
+        else
+        {
+            Debug.Log("Введено неверное слово!");
+        }
     }
 }
