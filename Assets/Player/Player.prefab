@@ -77,9 +77,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  walkSpeed: 0
-  sprintSpeed: 0
-  CameraAxis: {fileID: 6975382106458935561}
+  gravitation: 1
+  cameraAxis: {fileID: 6975382106458935561}
 --- !u!136 &3354262069893401157
 CapsuleCollider:
   m_ObjectHideFlags: 0
