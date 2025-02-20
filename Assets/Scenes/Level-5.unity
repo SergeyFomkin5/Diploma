@@ -1341,11 +1341,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!4 &136826489 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6975382106458935561, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
-  m_PrefabInstance: {fileID: 1332209514}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &248166951 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5727266226433131816, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
@@ -3509,14 +3504,6 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5727266226433131816, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
-      propertyPath: moveSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5727266226433131816, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
-      propertyPath: cameraAxis
-      value: 
-      objectReference: {fileID: 136826489}
     - target: {fileID: 5727266226433131816, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
       propertyPath: climbSpeedMultiplier
       value: 1.5
