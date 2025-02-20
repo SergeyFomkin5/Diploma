@@ -4,64 +4,84 @@ using UnityEngine;
 
 public class Player_movement : MonoBehaviour
 {
+    [Header("Movement Settings")]
+    public float moveSpeed = 5f; // Скорость движения
+    public float gravitation = 1f;
 
-    [Header("Movement")]
-    public float moveSpeed;
+    public Transform cameraAxis; // Ссылка на объект камеры
 
-    [HideInInspector] public float walkSpeed;
-    [HideInInspector] public float sprintSpeed;
+    private float horizontalInput;
+    private float verticalInput;
 
-    public Transform CameraAxis;
+    private Vector3 moveDirection;
+    private Rigidbody rb;
 
-    float horizontalInput;
-    float verticalInput;
-
-    Vector3 moveDirection;
-
-    Rigidbody rb;
+    private bool isOnStairs = false; // Флаг для проверки нахождения на лестнице
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true;
-
+        rb.freezeRotation = true; // Отключаем вращение Rigidbody
     }
 
     private void Update()
     {
-        SpeedControl();
-
-        MyInput();
+        GetInput(); // Получаем ввод от игрока
+        SpeedControl(); // Контроль скорости
     }
 
     private void FixedUpdate()
     {
-        MovePlayer();
+        MovePlayer(); // Двигаем игрока
     }
 
-    private void MyInput()
+    private void GetInput()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+        horizontalInput = Input.GetAxisRaw("Horizontal"); // Получаем ввод по оси X
+        verticalInput = Input.GetAxisRaw("Vertical"); // Получаем ввод по оси Z
     }
 
     private void MovePlayer()
     {
-        // calculate movement direction
-        moveDirection = CameraAxis.forward * verticalInput + CameraAxis.right * horizontalInput;
+        moveDirection = cameraAxis.forward * verticalInput + cameraAxis.right * horizontalInput; // Рассчитываем направление движения
 
-        rb.AddForce(moveDirection.normalized * moveSpeed * 2f, ForceMode.Force);
+        if (isOnStairs)
+        {
+            rb.mass = gravitation - 0.5f; // Отключаем гравитацию на лестнице
+
+            // Устанавливаем скорость игрока на лестнице
+            Vector3 targetVelocity = moveDirection.normalized * moveSpeed;
+            targetVelocity.y = verticalInput * moveSpeed; // Учитываем вертикальное движение
+
+            rb.velocity = new Vector3(targetVelocity.x, targetVelocity.y, targetVelocity.z);
+        }
+        else
+        {
+            rb.mass = gravitation; // Отключаем гравитацию на лестнице
+            rb.AddForce(moveDirection.normalized * moveSpeed * 2f, ForceMode.Force); // Применяем силу для движения
+        }
     }
 
     private void SpeedControl()
     {
-        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z); // Получаем скорость без учета вертикали
 
-        // limit velocity if needed
-        if (flatVel.magnitude > moveSpeed)
+        if (flatVel.magnitude > moveSpeed) // Проверяем, не превышает ли скорость максимальную
         {
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
-            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z); // Ограничиваем скорость
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Stairs")) // Проверяем тег "Stairs"
+            isOnStairs = true; // Устанавливаем флаг нахождения на лестнице
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Stairs"))
+            isOnStairs = false; // Сбрасываем флаг при выходе с лестницы
     }
 }
