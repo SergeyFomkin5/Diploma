@@ -12,6 +12,7 @@ TagManager:
   - ThirdCube
   - FourthCube
   - FifthCube
+  - Stairs
   layers:
   - Default
   - TransparentFX
