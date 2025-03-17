@@ -6,17 +6,28 @@ public class IntTest : MonoBehaviour
 {
     [SerializeField] private Animator IntCube;
     public int isCorrectAnswer = 0;
+    public bool isPlaced = false; // Добавляем флаг
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "FirstCube")
+        if (other.CompareTag("FirstCube"))
         {
-            Debug.Log("enter");
             IntCube.SetTrigger("IntCube");
             isCorrectAnswer = 1;
+            isPlaced = true; // Отмечаем размещение
         }
-        else
+        else if (!other.CompareTag("Untagged"))
         {
             isCorrectAnswer = 2;
+            isPlaced = true; // Отмечаем даже при ошибке
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("FirstCube") || other.CompareTag("WrongCube"))
+        {
+            isCorrectAnswer = 0; // Сбрасываем значение при выходе куба
+            isPlaced = false;
         }
     }
 }
