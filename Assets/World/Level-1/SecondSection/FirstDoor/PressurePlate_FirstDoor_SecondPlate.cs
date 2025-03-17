@@ -5,7 +5,7 @@ using UnityEngine;
 public class PressurePlate_FirstDoor_SecondPlate : MonoBehaviour
 {
     public static int flowerCount = 0; // Глобальная переменная для цветка
-    public static int cubeTwoCount = 0; // Глобальная переменная для куба
+    public static int cubeOneCount = 0; // Глобальная переменная для куба
 
     private void OnTriggerEnter(Collider other)
     {
@@ -13,9 +13,9 @@ public class PressurePlate_FirstDoor_SecondPlate : MonoBehaviour
         {
             flowerCount = 2; // Устанавливаем значение для цветка
         }
-        else if (other.gameObject.name == "CubeWithTwo")
+        else if (other.gameObject.name == "CubeWithOne")
         {
-            cubeTwoCount = 1; // Устанавливаем значение для куба
+            cubeOneCount = 1; // Устанавливаем значение для куба
         }
     }
 
@@ -25,9 +25,9 @@ public class PressurePlate_FirstDoor_SecondPlate : MonoBehaviour
         {
             flowerCount = 0; // Сбрасываем значение для цветка
         }
-        else if (other.gameObject.name == "CubeWithTwo")
+        else if (other.gameObject.name == "CubeWithOne")
         {
-            cubeTwoCount = 0; // Сбрасываем значение для куба
+            cubeOneCount = 0; // Сбрасываем значение для куба
         }
     }
 }
