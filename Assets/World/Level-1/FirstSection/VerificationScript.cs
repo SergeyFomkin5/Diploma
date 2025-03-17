@@ -1,19 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
+using System.Linq;
 
 public class VerificationScript : MonoBehaviour
 {
     [SerializeField] private GameObject failMessage;
     [SerializeField] private GameObject congratulationsMessage;
 
-    private cubesTestsScript cubesTests; // Ссылка на cubesTestsScript
+    private cubesTestsScript cubesTests;
+    private Coroutine messageCoroutine;
+    private bool checkPerformed;
+    private bool isDirty;
 
-    private Coroutine messageCoroutine; // Хранит ссылку на корутину
-
-    private void Awake()
+    private void Start()
     {
-        // Получаем ссылку на cubesTestsScript
         cubesTests = FindObjectOfType<cubesTestsScript>();
     }
 
@@ -21,108 +21,81 @@ public class VerificationScript : MonoBehaviour
     {
         if (cubesTests != null)
         {
-            // Создаем массив для хранения ответов
-            int[] answers = new int[5];
-            answers[0] = cubesTests.intCube.isCorrectAnswer;
-            answers[1] = cubesTests.boolCube.isCorrectAnswer; // Преобразуем bool в int
-            answers[2] = cubesTests.stringCube.isCorrectAnswer; // Предполагается, что это int
-            answers[3] = cubesTests.charCube.isCorrectAnswer; // Предполагается, что это int
-            answers[4] = cubesTests.floatCube.isCorrectAnswer; // Предполагается, что это int
+            bool allPlaced = cubesTests.intCube.isPlaced &&
+                            cubesTests.boolCube.isPlaced &&
+                            cubesTests.stringCube.isPlaced &&
+                            cubesTests.charCube.isPlaced &&
+                            cubesTests.floatCube.isPlaced;
 
-            bool hasError = false;
-            bool allCorrect = true;
+            if (!allPlaced)
+            {
+                isDirty = true;
+                checkPerformed = false;
+                HideAllMessages();
+            }
+            else if (isDirty && !checkPerformed)
+            {
+                CheckAnswers();
+                checkPerformed = true;
+                isDirty = false;
+            }
+        }
+    }
 
-            // Проверяем условия для сообщений
-            foreach (int answer in answers)
-            {
-                if (answer == 2)
-                {
-                    hasError = true; // Если хотя бы один ответ равен 2, устанавливаем флаг ошибки
-                }
-                if (answer != 1)
-                {
-                    allCorrect = false; // Если хотя бы один ответ не равен 1, устанавливаем флаг на false
-                }
-            }
+    private void CheckAnswers()
+    {
+        int[] answers = {
+            cubesTests.intCube.isCorrectAnswer,
+            cubesTests.boolCube.isCorrectAnswer,
+            cubesTests.stringCube.isCorrectAnswer,
+            cubesTests.charCube.isCorrectAnswer,
+            cubesTests.floatCube.isCorrectAnswer
+        };
 
-            if (hasError)
-            {
-                ShowFailMessage(); // Показываем сообщение об ошибке
-            }
-            else if (allCorrect)
-            {
-                ShowCongratulationslMessage(); // Показываем поздравительное сообщение
-            }
-            else
-            {
-                if (messageCoroutine != null)
-                {
-                    HideFailMessage();
-                    HideCongratulationsMessage();
-                }
-            }
+        if (answers.Sum() == 5)
+        {
+            ShowCongratulationsMessage();
+        }
+        else
+        {
+            ShowFailMessage();
+        }
+    }
+
+    private void ShowCongratulationsMessage()
+    {
+        if (!congratulationsMessage.activeSelf && !failMessage.activeSelf)
+        {
+            HideAllMessages();
+            congratulationsMessage.SetActive(true);
+            messageCoroutine = StartCoroutine(HideAfterDelay(5f));
         }
     }
 
     private void ShowFailMessage()
     {
-        if (messageCoroutine == null)
+        if (!failMessage.activeSelf && !congratulationsMessage.activeSelf)
         {
+            HideAllMessages();
             failMessage.SetActive(true);
-            Debug.Log("Сообщение об ошибке активно");
-            messageCoroutine = StartCoroutine(ShowFailMessageForSeconds(5f));
+            messageCoroutine = StartCoroutine(HideAfterDelay(5f));
         }
     }
 
-    private void HideFailMessage()
+    private void HideAllMessages()
     {
         if (messageCoroutine != null)
         {
             StopCoroutine(messageCoroutine);
             messageCoroutine = null;
         }
-
         failMessage.SetActive(false);
-        Debug.Log("Сообщение об ошибке деактивировано");
-
-        // Сброс значения isCorrectAnswer только если это необходимо
-        cubesTests.intCube.isCorrectAnswer = 0; // Если нужно сбросить значение
-    }
-
-    private IEnumerator ShowFailMessageForSeconds(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        HideFailMessage();
-    }
-
-    private void ShowCongratulationslMessage()
-    {
-        if (messageCoroutine == null)
-        {
-            congratulationsMessage.SetActive(true);
-            Debug.Log("Поздравительное сообщение активно");
-            messageCoroutine = StartCoroutine(ShowCongratulationsMessageForSeconds(5f));
-        }
-    }
-
-    private void HideCongratulationsMessage()
-    {
-        if (messageCoroutine != null)
-        {
-            StopCoroutine(messageCoroutine);
-            messageCoroutine = null;
-        }
-
         congratulationsMessage.SetActive(false);
-        Debug.Log("Поздравительное сообщение деактивировано");
-
-        // Сброс значения isCorrectAnswer только если это необходимо
-        cubesTests.intCube.isCorrectAnswer = 0; // Если нужно сбросить значение
     }
 
-    private IEnumerator ShowCongratulationsMessageForSeconds(float seconds)
+    private IEnumerator HideAfterDelay(float delay)
     {
-        yield return new WaitForSeconds(seconds);
-        HideCongratulationsMessage();
+        yield return new WaitForSeconds(delay);
+        HideAllMessages();
     }
 }
