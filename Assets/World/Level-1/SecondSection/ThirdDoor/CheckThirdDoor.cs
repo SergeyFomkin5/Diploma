@@ -28,8 +28,8 @@ public class CheckThirdDoor : MonoBehaviour
         bool threeObjectsOnFirstPlate = isFlowerOnFirstPlate && isCubeTwoOnFirstPlate && isCubeFourOnFirstPlate;
         bool threeObjectsOnSecondPlate = isFlowerOnSecondPlate && isCubeTwoOnSecondPlate && isCubeFourOnSecondPlate;
 
-        if ((threeObjectsOnFirstPlate && !isCubeOneOnFirstPlate) ||
-            (threeObjectsOnSecondPlate && !isCubeOneOnSecondPlate))
+        if ((threeObjectsOnFirstPlate && !isCubeOneOnFirstPlate && isCubeOneOnSecondPlate) ||
+            (threeObjectsOnSecondPlate && !isCubeOneOnSecondPlate && isCubeOneOnFirstPlate))
         {
             thirdDoorAnimation.SetActive(false);
             Debug.Log("Третья дверь открыта!");
