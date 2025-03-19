@@ -6835,7 +6835,7 @@ PrefabInstance:
       objectReference: {fileID: 396909424}
     - target: {fileID: 2897551572364163218, guid: 5ee083672f8d4734498ebca33c3ee946, type: 3}
       propertyPath: m_VersionIndex
-      value: 2704
+      value: 2707
       objectReference: {fileID: 0}
     - target: {fileID: 4944093162207514159, guid: 5ee083672f8d4734498ebca33c3ee946, type: 3}
       propertyPath: m_Name
@@ -6914,6 +6914,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 696506677}
     - target: {fileID: 8314519203584165958, guid: 5ee083672f8d4734498ebca33c3ee946, type: 3}
+      propertyPath: failMessage
+      value: 
+      objectReference: {fileID: 854570214}
+    - target: {fileID: 8314519203584165958, guid: 5ee083672f8d4734498ebca33c3ee946, type: 3}
       propertyPath: player_Movement
       value: 
       objectReference: {fileID: 765142914}
@@ -6921,6 +6925,10 @@ PrefabInstance:
       propertyPath: player_CameraRotation
       value: 
       objectReference: {fileID: 1945307277}
+    - target: {fileID: 8314519203584165958, guid: 5ee083672f8d4734498ebca33c3ee946, type: 3}
+      propertyPath: congratulationsMessage
+      value: 
+      objectReference: {fileID: 152502395}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7162,6 +7170,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5864307936953469069, guid: 5ee083672f8d4734498ebca33c3ee946, type: 3}
   m_PrefabInstance: {fileID: 464212621}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &152502395 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2002641797341172178, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+  m_PrefabInstance: {fileID: 984019792}
   m_PrefabAsset: {fileID: 0}
 --- !u!43 &258190740
 Mesh:
@@ -7837,7 +7850,7 @@ PrefabInstance:
       objectReference: {fileID: 1623174483}
     - target: {fileID: 2897551572364163218, guid: 5ee083672f8d4734498ebca33c3ee946, type: 3}
       propertyPath: m_VersionIndex
-      value: 2689
+      value: 2692
       objectReference: {fileID: 0}
     - target: {fileID: 4944093162207514159, guid: 5ee083672f8d4734498ebca33c3ee946, type: 3}
       propertyPath: m_Name
@@ -7916,6 +7929,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 696506677}
     - target: {fileID: 8314519203584165958, guid: 5ee083672f8d4734498ebca33c3ee946, type: 3}
+      propertyPath: failMessage
+      value: 
+      objectReference: {fileID: 854570214}
+    - target: {fileID: 8314519203584165958, guid: 5ee083672f8d4734498ebca33c3ee946, type: 3}
       propertyPath: player_Movement
       value: 
       objectReference: {fileID: 765142914}
@@ -7923,6 +7940,10 @@ PrefabInstance:
       propertyPath: player_CameraRotation
       value: 
       objectReference: {fileID: 1945307277}
+    - target: {fileID: 8314519203584165958, guid: 5ee083672f8d4734498ebca33c3ee946, type: 3}
+      propertyPath: congratulationsMessage
+      value: 
+      objectReference: {fileID: 152502395}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11314,6 +11335,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00cc169544f8464eafd0e544472ffe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &854570214 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6869762417295877169, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+  m_PrefabInstance: {fileID: 984019792}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &859224774
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32557,7 +32583,7 @@ PrefabInstance:
       objectReference: {fileID: 477802255}
     - target: {fileID: 2897551572364163218, guid: 5ee083672f8d4734498ebca33c3ee946, type: 3}
       propertyPath: m_VersionIndex
-      value: 2716
+      value: 2719
       objectReference: {fileID: 0}
     - target: {fileID: 2897551572364163218, guid: 5ee083672f8d4734498ebca33c3ee946, type: 3}
       propertyPath: m_SelectedEdges.Array.size
@@ -32660,6 +32686,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 696506677}
     - target: {fileID: 8314519203584165958, guid: 5ee083672f8d4734498ebca33c3ee946, type: 3}
+      propertyPath: failMessage
+      value: 
+      objectReference: {fileID: 854570214}
+    - target: {fileID: 8314519203584165958, guid: 5ee083672f8d4734498ebca33c3ee946, type: 3}
       propertyPath: player_Movement
       value: 
       objectReference: {fileID: 765142914}
@@ -32667,6 +32697,10 @@ PrefabInstance:
       propertyPath: player_CameraRotation
       value: 
       objectReference: {fileID: 1945307277}
+    - target: {fileID: 8314519203584165958, guid: 5ee083672f8d4734498ebca33c3ee946, type: 3}
+      propertyPath: congratulationsMessage
+      value: 
+      objectReference: {fileID: 152502395}
     - target: {fileID: 8723252089394286647, guid: 5ee083672f8d4734498ebca33c3ee946, type: 3}
       propertyPath: m_IncludeLayers.m_Bits
       value: 4294967295
