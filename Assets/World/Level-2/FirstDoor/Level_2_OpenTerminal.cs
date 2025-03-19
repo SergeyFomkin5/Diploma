@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.UI;
 using TMPro;
 
@@ -13,6 +14,9 @@ public class Level_2_OpenTerminal : MonoBehaviour
     [SerializeField] private Animator door_1;
     [SerializeField] private Animator door_2;
     [SerializeField] private Animator door_3;
+    [SerializeField] private GameObject failMessage;
+    [SerializeField] private GameObject congratulationsMessage;
+    private Coroutine messageCoroutine;
 
     private bool isInTrigger = false; // В зоне терминала
     private bool isTerminalActive = false; // Терминал открыт
@@ -109,15 +113,18 @@ public class Level_2_OpenTerminal : MonoBehaviour
                     if (number > 5)
                     {
                         door_1.SetTrigger("Door-1");
+                        ShowCongratulationsMessage();
                         Debug.Log($"Успех! Введено число: {number}");
                     }
                     else
                     {
+                        ShowFailMessage();
                         Debug.Log("Ошибка: Число должно быть больше 5");
                     }
                 }
                 else
                 {
+                    ShowFailMessage();
                     Debug.Log("Ошибка: Введите целое число");
                 }
                 break;
@@ -127,10 +134,12 @@ public class Level_2_OpenTerminal : MonoBehaviour
                 if (inputText == "!isWorking")
                 {
                     door_2.SetTrigger("Door-2"); // Убедитесь в существовании Door-2 анимации!
+                    ShowCongratulationsMessage();
                     Debug.Log("Успех! Введено правильное слово.");
                 }
                 else
                 {
+                    ShowFailMessage();
                     Debug.Log("Ошибка: Введите '!isWorking'");
                 }
                 break;
@@ -141,17 +150,61 @@ public class Level_2_OpenTerminal : MonoBehaviour
                 {
                     case "red green purple":
                         door_3.SetTrigger("Door-3");
+                        ShowCongratulationsMessage();
                         Debug.Log("Успех! Введено правильное слово.");
                         break;
                     default:
+                        ShowFailMessage();
                         Debug.Log("Ошибка: Введите 'red', 'green' или 'purple'");
                         break;
                 }
                 break;
 
             default:
+                ShowFailMessage();
                 Debug.Log("Ошибка: Терминал не опознан.");
                 break;
         }
+    }
+
+    private void ShowCongratulationsMessage()
+    {
+        if (!congratulationsMessage.activeSelf)
+        {
+            Debug.Log("Показ поздравительного сообщения");
+            HideAllMessages();
+            congratulationsMessage.SetActive(true);
+            messageCoroutine = StartCoroutine(HideAfterDelay(5f));
+        }
+    }
+
+    private void ShowFailMessage()
+    {
+        if (!failMessage.activeSelf)
+        {
+            Debug.Log("Показ сообщения об ошибке");
+            HideAllMessages();
+            failMessage.SetActive(true);
+            messageCoroutine = StartCoroutine(HideAfterDelay(5f));
+        }
+    }
+
+    private void HideAllMessages()
+    {
+        if (messageCoroutine != null)
+        {
+            StopCoroutine(messageCoroutine);
+            messageCoroutine = null;
+        }
+        failMessage.SetActive(false);
+        congratulationsMessage.SetActive(false);
+    }
+
+    private IEnumerator HideAfterDelay(float delay)
+    {
+        Debug.Log("Корутина запущена");
+        yield return new WaitForSeconds(delay);
+        Debug.Log("Корутина завершена");
+        HideAllMessages();
     }
 }
