@@ -1185,6 +1185,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &340582274 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2002641797341172178, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+  m_PrefabInstance: {fileID: 1091586627}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &379036161
 GameObject:
   m_ObjectHideFlags: 0
@@ -2692,6 +2697,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8611845582927581269, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
   m_PrefabInstance: {fileID: 1091586627}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &629103895 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6869762417295877169, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+  m_PrefabInstance: {fileID: 1091586627}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &638914603
 GameObject:
   m_ObjectHideFlags: 0
@@ -2935,6 +2945,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 98103549}
     - target: {fileID: 166346528494864184, guid: 43a70c96980c86f47808341f3f805b9d, type: 3}
+      propertyPath: failMessage
+      value: 
+      objectReference: {fileID: 629103895}
+    - target: {fileID: 166346528494864184, guid: 43a70c96980c86f47808341f3f805b9d, type: 3}
       propertyPath: ThirdRoomRobot
       value: 
       objectReference: {fileID: 1796942251}
@@ -2958,6 +2972,10 @@ PrefabInstance:
       propertyPath: player_CameraRotation
       value: 
       objectReference: {fileID: 1836842766}
+    - target: {fileID: 166346528494864184, guid: 43a70c96980c86f47808341f3f805b9d, type: 3}
+      propertyPath: congratulationsMessage
+      value: 
+      objectReference: {fileID: 340582274}
     - target: {fileID: 5850344014620447188, guid: 43a70c96980c86f47808341f3f805b9d, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3608,6 +3626,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 98103549}
     - target: {fileID: 166346528494864184, guid: 43a70c96980c86f47808341f3f805b9d, type: 3}
+      propertyPath: failMessage
+      value: 
+      objectReference: {fileID: 629103895}
+    - target: {fileID: 166346528494864184, guid: 43a70c96980c86f47808341f3f805b9d, type: 3}
       propertyPath: ThirdRoomRobot
       value: 
       objectReference: {fileID: 1796942251}
@@ -3635,6 +3657,10 @@ PrefabInstance:
       propertyPath: player_CameraRotation
       value: 
       objectReference: {fileID: 1836842766}
+    - target: {fileID: 166346528494864184, guid: 43a70c96980c86f47808341f3f805b9d, type: 3}
+      propertyPath: congratulationsMessage
+      value: 
+      objectReference: {fileID: 340582274}
     - target: {fileID: 5850344014620447188, guid: 43a70c96980c86f47808341f3f805b9d, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3661,31 +3687,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7120005534710871077, guid: 43a70c96980c86f47808341f3f805b9d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.00000058114523
+      value: 0.00000039953528
       objectReference: {fileID: 0}
     - target: {fileID: 7120005534710871077, guid: 43a70c96980c86f47808341f3f805b9d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0.00072195794
       objectReference: {fileID: 0}
     - target: {fileID: 7120005534710871077, guid: 43a70c96980c86f47808341f3f805b9d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0.9999619
       objectReference: {fileID: 0}
     - target: {fileID: 7120005534710871077, guid: 43a70c96980c86f47808341f3f805b9d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.008697863
       objectReference: {fileID: 0}
     - target: {fileID: 7120005534710871077, guid: 43a70c96980c86f47808341f3f805b9d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -0.997
       objectReference: {fileID: 0}
     - target: {fileID: 7120005534710871077, guid: 43a70c96980c86f47808341f3f805b9d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 179.999
       objectReference: {fileID: 0}
     - target: {fileID: 7120005534710871077, guid: 43a70c96980c86f47808341f3f805b9d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 0.083
       objectReference: {fileID: 0}
     - target: {fileID: 8062361696281981594, guid: 43a70c96980c86f47808341f3f805b9d, type: 3}
       propertyPath: m_Name
@@ -6252,7 +6278,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1157223266712375638, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -67.5
+      value: -45.5
       objectReference: {fileID: 0}
     - target: {fileID: 1157223266712375638, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6260,7 +6286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1157223266712375638, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.250005
+      value: 6.2500033
       objectReference: {fileID: 0}
     - target: {fileID: 1157223266712375638, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7261,6 +7287,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 98103549}
     - target: {fileID: 166346528494864184, guid: 43a70c96980c86f47808341f3f805b9d, type: 3}
+      propertyPath: failMessage
+      value: 
+      objectReference: {fileID: 629103895}
+    - target: {fileID: 166346528494864184, guid: 43a70c96980c86f47808341f3f805b9d, type: 3}
       propertyPath: firstRoomRobot
       value: 
       objectReference: {fileID: 426522043}
@@ -7280,6 +7310,10 @@ PrefabInstance:
       propertyPath: player_CameraRotation
       value: 
       objectReference: {fileID: 1836842766}
+    - target: {fileID: 166346528494864184, guid: 43a70c96980c86f47808341f3f805b9d, type: 3}
+      propertyPath: congratulationsMessage
+      value: 
+      objectReference: {fileID: 340582274}
     - target: {fileID: 5850344014620447188, guid: 43a70c96980c86f47808341f3f805b9d, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -22036,6 +22070,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 98103549}
     - target: {fileID: 166346528494864184, guid: 43a70c96980c86f47808341f3f805b9d, type: 3}
+      propertyPath: failMessage
+      value: 
+      objectReference: {fileID: 629103895}
+    - target: {fileID: 166346528494864184, guid: 43a70c96980c86f47808341f3f805b9d, type: 3}
       propertyPath: firstRoomRobot
       value: 
       objectReference: {fileID: 426522043}
@@ -22055,6 +22093,10 @@ PrefabInstance:
       propertyPath: player_CameraRotation
       value: 
       objectReference: {fileID: 1836842766}
+    - target: {fileID: 166346528494864184, guid: 43a70c96980c86f47808341f3f805b9d, type: 3}
+      propertyPath: congratulationsMessage
+      value: 
+      objectReference: {fileID: 340582274}
     - target: {fileID: 5850344014620447188, guid: 43a70c96980c86f47808341f3f805b9d, type: 3}
       propertyPath: m_Mesh
       value: 
