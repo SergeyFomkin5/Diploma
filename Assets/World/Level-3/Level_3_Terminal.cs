@@ -1,4 +1,6 @@
+using System.Net.Mail;
 using TMPro;
+using System.Collections;
 using UnityEngine;
 
 public class Level_3_Terminal : MonoBehaviour
@@ -19,6 +21,10 @@ public class Level_3_Terminal : MonoBehaviour
     [SerializeField] private Animator door_4;
     [SerializeField] private Animator FourthRoomRobot;
 
+    [SerializeField] private GameObject failMessage;
+    [SerializeField] private GameObject congratulationsMessage;
+    private Coroutine messageCoroutine;
+
     private bool isInTrigger = false;
     private bool isTerminalActive = false;
 
@@ -26,6 +32,7 @@ public class Level_3_Terminal : MonoBehaviour
     private int goForward = 0;
     private int turnRight = 0;
     private int turnLeft = 0;
+    private int counter = 0;
 
     // Новые строки для сада (можно менять)
     private string[] gardenRows = {
@@ -111,7 +118,7 @@ public class Level_3_Terminal : MonoBehaviour
 
     private void ValidateInput()
     {
-        string inputText = inputField.text.Trim().ToLower();
+        string inputText = inputField.text.Trim();
 
         switch (gameObject.name)
         {
@@ -142,29 +149,33 @@ public class Level_3_Terminal : MonoBehaviour
 
     private void ProcessTerminal1Input(string inputText)
     {
-        if (inputText == "nottouchthewall()" || inputText == "goleft()" || inputText == "tapthebutton()")
+        if (inputText == "notTouchTheWall()goForward()tapTheButton()" || inputText == "notTouchTheWall() goForward() tapTheButton()")
         {
             Debug.Log("Все проверки пройдены!");
             door_1.SetTrigger("DoorOpen");
             firstRoomRobot.SetTrigger("Correct");
+            ShowCongratulationsMessage();
         }
         else
         {
+            ShowFailMessage();
             Debug.Log("Ошибка: Неверный ввод!");
         }
     }
 
     private void ProcessTerminal2Input(string inputText)
     {
-        if (inputText == "goleft()" || inputText == "goright()" || inputText == "tapthebutton()")
+        if (inputText == "notSeeTheButton()goForward()tapthebutton()" || inputText == "notSeeTheButton() goForward() tapthebutton()")
         {
             Debug.Log("Все проверки пройдены!");
             door_2.SetTrigger("DoorOpen");
             SecondRoomRobotOne.SetTrigger("Correct");
             SecondRoomRoboTwo.SetTrigger("Correct");
+            ShowCongratulationsMessage();
         }
         else
         {
+            ShowFailMessage();
             Debug.Log("Ошибка: Неверный ввод!");
         }
     }
@@ -173,34 +184,46 @@ public class Level_3_Terminal : MonoBehaviour
     {
         switch (inputText)
         {
-            case "goforward()":
+            case "goForward()":
                 goForward++;
+                counter++;
                 Debug.Log("+1 to goForward");
                 break;
 
-            case "turnright()":
+            case "turnRight()":
                 turnRight++;
+                counter++;
                 Debug.Log("+1 to turnRight");
                 break;
 
-            case "turnleft()":
+            case "turnLeft()":
                 turnLeft++;
+                counter++;
                 Debug.Log("+1 to turnLeft");
                 break;
 
             default:
+                ShowFailMessage();
                 Debug.Log("Ошибка: Неверный ввод! Ожидается 'goForward()', 'turnRight()', или 'TurnLeft()'");
                 return;
         }
 
         // Проверяем условия после обновления счетчиков
-        if (turnLeft == 2 && turnRight == 2 && goForward == 3)
+        if (turnLeft == 2 && turnRight == 2 && goForward == 3 && counter == 7)
         {
             door_3.SetTrigger("DoorOpen");
             ThirdRoomRobot.SetTrigger("Correct");
+            ShowCongratulationsMessage();
             Debug.Log("Успех! Все условия выполнены.");
 
             ResetCounters();
+        } else if (counter > 7)
+        {
+            ShowFailMessage();
+            goForward = 0;
+            turnRight = 0;
+            turnLeft = 0;
+            counter = 0;
         }
     }
 
@@ -218,10 +241,53 @@ public class Level_3_Terminal : MonoBehaviour
             Debug.Log("Введено правильное слово!");
             door_4.SetTrigger("DoorOpen");
             FourthRoomRobot.SetTrigger("Correct");
+            ShowCongratulationsMessage();
         }
         else
         {
+            ShowFailMessage();
             Debug.Log("Введено неверное слово!");
         }
+    }
+
+    private void ShowCongratulationsMessage()
+    {
+        if (!congratulationsMessage.activeSelf)
+        {
+            Debug.Log("Показ поздравительного сообщения");
+            HideAllMessages();
+            congratulationsMessage.SetActive(true);
+            messageCoroutine = StartCoroutine(HideAfterDelay(5f));
+        }
+    }
+
+    private void ShowFailMessage()
+    {
+        if (!failMessage.activeSelf)
+        {
+            Debug.Log("Показ сообщения об ошибке");
+            HideAllMessages();
+            failMessage.SetActive(true);
+            messageCoroutine = StartCoroutine(HideAfterDelay(5f));
+        }
+    }
+
+    private void HideAllMessages()
+    {
+        if (messageCoroutine != null)
+        {
+            StopCoroutine(messageCoroutine);
+            messageCoroutine = null;
+        }
+        failMessage.SetActive(false);
+        congratulationsMessage.SetActive(false);
+    }
+
+    private IEnumerator HideAfterDelay(float delay)
+    {
+        Debug.Log("Корутина запущена");
+        yield return new WaitForSeconds(delay);
+        Debug.Log("Корутина завершена");
+        HideAllMessages();
     }
 }
