@@ -5902,6 +5902,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 7ad9ac3412e8d8143bbed225391499b9, type: 2}
+    - target: {fileID: 8986054560427685433, guid: 8a962f348d5bd7f42abc2f6c1cc2dd9b, type: 3}
+      propertyPath: nextLevelIndex
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5939,6 +5943,11 @@ Transform:
   - {fileID: 859116287}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1167737695 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6869762417295877169, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+  m_PrefabInstance: {fileID: 1525078332}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1525078332
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6037,6 +6046,11 @@ MonoBehaviour:
 --- !u!1 &1525078337 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8305259447238104003, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+  m_PrefabInstance: {fileID: 1525078332}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1786239061 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2002641797341172178, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
   m_PrefabInstance: {fileID: 1525078332}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &2094652934 stripped
@@ -6845,6 +6859,8 @@ MonoBehaviour:
   player_Movement: {fileID: 1525078334}
   player_CameraRotation: {fileID: 1525078333}
   door_1: {fileID: 2094652934}
+  failMessage: {fileID: 1167737695}
+  congratulationsMessage: {fileID: 1786239061}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
