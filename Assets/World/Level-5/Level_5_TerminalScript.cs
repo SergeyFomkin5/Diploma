@@ -16,8 +16,9 @@ public class Level_5_TerminalScript : MonoBehaviour
     [SerializeField] private Animator BluePlatform;
     [SerializeField] private Animator GreenPlatform;
 
-
-
+    [SerializeField] private GameObject failMessage;
+    [SerializeField] private GameObject congratulationsMessage;
+    private Coroutine messageCoroutine;
 
     private bool isInTrigger = false;
     private bool isTerminalActive = false;
@@ -119,6 +120,7 @@ public class Level_5_TerminalScript : MonoBehaviour
         if (inputText == "red blue green")
         {
             door_1.SetTrigger("DoorOpen");
+            ShowCongratulationsMessage();
             Debug.Log("Успех!");
             RedPlatform.SetTrigger("Red");
             BluePlatform.SetTrigger("Blue");
@@ -126,7 +128,48 @@ public class Level_5_TerminalScript : MonoBehaviour
         }
         else
         {
+            ShowFailMessage();
             Debug.Log("Неверно введёное слово");
         }
+    }
+
+    private void ShowCongratulationsMessage()
+    {
+        if (!congratulationsMessage.activeSelf)
+        {
+            Debug.Log("Показ поздравительного сообщения");
+            HideAllMessages();
+            congratulationsMessage.SetActive(true);
+            messageCoroutine = StartCoroutine(HideAfterDelay(5f));
+        }
+    }
+
+    private void ShowFailMessage()
+    {
+        if (!failMessage.activeSelf)
+        {
+            Debug.Log("Показ сообщения об ошибке");
+            HideAllMessages();
+            failMessage.SetActive(true);
+            messageCoroutine = StartCoroutine(HideAfterDelay(5f));
+        }
+    }
+    private void HideAllMessages()
+    {
+        if (messageCoroutine != null)
+        {
+            StopCoroutine(messageCoroutine);
+            messageCoroutine = null;
+        }
+        failMessage.SetActive(false);
+        congratulationsMessage.SetActive(false);
+    }
+
+    private IEnumerator HideAfterDelay(float delay)
+    {
+        Debug.Log("Корутина запущена");
+        yield return new WaitForSeconds(delay);
+        Debug.Log("Корутина завершена");
+        HideAllMessages();
     }
 }
