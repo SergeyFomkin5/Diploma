@@ -12,9 +12,10 @@ public class Level_6_TerminalScript : MonoBehaviour
     [SerializeField] private Player_movement player_Movement;
     [SerializeField] private Player_CameraRotation player_CameraRotation;
     [SerializeField] private Animator door_1;
-    //[SerializeField] private Animator Fabricator;
 
-
+    [SerializeField] private GameObject failMessage;
+    [SerializeField] private GameObject congratulationsMessage;
+    private Coroutine messageCoroutine;
 
 
     private bool isInTrigger = false;
@@ -148,15 +149,59 @@ public class Level_6_TerminalScript : MonoBehaviour
         }
         else
         {
+            ShowFailMessage();
             Debug.Log("Ошибка, что-то неверно");
         }
 
         if (RobotNameCheck && RobotJobCheck && RobotAuthLevelCheck && ClassCreatingCheck)
         {
             door_1.SetTrigger("DoorOpen");
+            ShowCongratulationsMessage();
             Debug.Log("Успех");
             //Fabricator.SetTrigger("DoorOpen");
 
         }
+
+
+    }
+
+    private void ShowCongratulationsMessage()
+    {
+        if (!congratulationsMessage.activeSelf)
+        {
+            Debug.Log("Показ поздравительного сообщения");
+            HideAllMessages();
+            congratulationsMessage.SetActive(true);
+            messageCoroutine = StartCoroutine(HideAfterDelay(5f));
+        }
+    }
+
+    private void ShowFailMessage()
+    {
+        if (!failMessage.activeSelf)
+        {
+            Debug.Log("Показ сообщения об ошибке");
+            HideAllMessages();
+            failMessage.SetActive(true);
+            messageCoroutine = StartCoroutine(HideAfterDelay(5f));
+        }
+    }
+    private void HideAllMessages()
+    {
+        if (messageCoroutine != null)
+        {
+            StopCoroutine(messageCoroutine);
+            messageCoroutine = null;
+        }
+        failMessage.SetActive(false);
+        congratulationsMessage.SetActive(false);
+    }
+
+    private IEnumerator HideAfterDelay(float delay)
+    {
+        Debug.Log("Корутина запущена");
+        yield return new WaitForSeconds(delay);
+        Debug.Log("Корутина завершена");
+        HideAllMessages();
     }
 }
