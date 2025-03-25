@@ -3513,6 +3513,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+--- !u!1 &1332209515 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2002641797341172178, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+  m_PrefabInstance: {fileID: 1332209514}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1332209516 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6869762417295877169, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+  m_PrefabInstance: {fileID: 1332209514}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1336595434
 Mesh:
   m_ObjectHideFlags: 0
@@ -9215,6 +9225,8 @@ MonoBehaviour:
   RedPlatform: {fileID: 80235334}
   BluePlatform: {fileID: 1193427795}
   GreenPlatform: {fileID: 22201152}
+  failMessage: {fileID: 1332209516}
+  congratulationsMessage: {fileID: 1332209515}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
