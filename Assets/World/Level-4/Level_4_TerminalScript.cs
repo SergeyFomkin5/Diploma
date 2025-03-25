@@ -1,8 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Level_4_TerminalScript : MonoBehaviour
@@ -15,6 +12,10 @@ public class Level_4_TerminalScript : MonoBehaviour
     [SerializeField] private Player_CameraRotation player_CameraRotation;
     [SerializeField] private Animator door_1;
     [SerializeField] private Animator conveer;
+
+    [SerializeField] private GameObject failMessage;
+    [SerializeField] private GameObject congratulationsMessage;
+    private Coroutine messageCoroutine;
 
 
     private bool isInTrigger = false;
@@ -117,7 +118,7 @@ public class Level_4_TerminalScript : MonoBehaviour
     private void TerminalProccess(string inputText)
     {
 
-        if (inputText == "number")
+        if (inputText == "number")  //foreach logic
         {
             inputNumber = true;
         }
@@ -131,6 +132,7 @@ public class Level_4_TerminalScript : MonoBehaviour
         } else
         {
             Debug.Log("Неверно введёное слово");
+            ShowFailMessage();
         }
 
         if (inputNumber && inputNumbers && inputSum)
@@ -138,7 +140,48 @@ public class Level_4_TerminalScript : MonoBehaviour
             door_1.SetTrigger("DoorOpen");
             conveer.SetTrigger("Correct");
             Debug.Log("Успех!");
+            ShowCongratulationsMessage();
         }
 
+    }
+
+    private void ShowCongratulationsMessage()
+    {
+        if (!congratulationsMessage.activeSelf)
+        {
+            Debug.Log("Показ поздравительного сообщения");
+            HideAllMessages();
+            congratulationsMessage.SetActive(true);
+            messageCoroutine = StartCoroutine(HideAfterDelay(5f));
+        }
+    }
+
+    private void ShowFailMessage()
+    {
+        if (!failMessage.activeSelf)
+        {
+            Debug.Log("Показ сообщения об ошибке");
+            HideAllMessages();
+            failMessage.SetActive(true);
+            messageCoroutine = StartCoroutine(HideAfterDelay(5f));
+        }
+    }
+    private void HideAllMessages()
+    {
+        if (messageCoroutine != null)
+        {
+            StopCoroutine(messageCoroutine);
+            messageCoroutine = null;
+        }
+        failMessage.SetActive(false);
+        congratulationsMessage.SetActive(false);
+    }
+
+    private IEnumerator HideAfterDelay(float delay)
+    {
+        Debug.Log("Корутина запущена");
+        yield return new WaitForSeconds(delay);
+        Debug.Log("Корутина завершена");
+        HideAllMessages();
     }
 }
