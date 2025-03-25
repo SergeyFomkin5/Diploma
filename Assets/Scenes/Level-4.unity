@@ -3887,6 +3887,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1350752827}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1350818397 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2002641797341172178, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+  m_PrefabInstance: {fileID: 541069515}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1413689421
 GameObject:
   m_ObjectHideFlags: 0
@@ -12507,6 +12512,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1995522732 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6869762417295877169, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+  m_PrefabInstance: {fileID: 541069515}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2091018337
 GameObject:
   m_ObjectHideFlags: 0
@@ -13271,6 +13281,8 @@ MonoBehaviour:
   player_CameraRotation: {fileID: 541069516}
   door_1: {fileID: 407818904}
   conveer: {fileID: 187947655}
+  failMessage: {fileID: 1995522732}
+  congratulationsMessage: {fileID: 1350818397}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
