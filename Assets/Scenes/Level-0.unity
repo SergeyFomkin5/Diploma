@@ -4726,6 +4726,18 @@ PrefabInstance:
       value: SecondCube
       objectReference: {fileID: 0}
     - target: {fileID: 9073238503066327467, guid: e80eb99c610552f49a15f23e0218c7f5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9073238503066327467, guid: e80eb99c610552f49a15f23e0218c7f5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9073238503066327467, guid: e80eb99c610552f49a15f23e0218c7f5, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9073238503066327467, guid: e80eb99c610552f49a15f23e0218c7f5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.7803574
       objectReference: {fileID: 0}
