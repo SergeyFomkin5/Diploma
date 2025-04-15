@@ -6664,7 +6664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6496909ff6149cb47be086c2a3f1f837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GreenCube: {fileID: 0}
+  GreenCube: {fileID: 604843592}
   isCorrectAnswer: 0
 --- !u!4 &1929251724
 Transform:
