@@ -241,6 +241,7 @@ GameObject:
   - component: {fileID: 9015928895733646515}
   - component: {fileID: 7160224868931219404}
   - component: {fileID: 8437011398972529895}
+  - component: {fileID: 5626930931439517362}
   m_Layer: 0
   m_Name: ElevatorButtons
   m_TagString: Untagged
@@ -313,6 +314,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5626930931439517362
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3018707772905286887}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8385836491182413749, guid: 868579cb64456a542a76cfe4bcda4aa1, type: 3}
 --- !u!1 &3934865621559256213
 GameObject:
   m_ObjectHideFlags: 0
