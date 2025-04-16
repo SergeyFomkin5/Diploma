@@ -86,8 +86,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.00000058114523}
   m_LocalPosition: {x: -10.973234, y: 0, z: 10.028284}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6234029658049186410}
   m_Father: {fileID: 0}
@@ -111,6 +111,15 @@ MonoBehaviour:
   player_CameraRotation: {fileID: 0}
   door_1: {fileID: 0}
   firstRoomRobot: {fileID: 0}
+  door_2: {fileID: 0}
+  SecondRoomRobotOne: {fileID: 0}
+  SecondRoomRoboTwo: {fileID: 0}
+  door_3: {fileID: 0}
+  ThirdRoomRobot: {fileID: 0}
+  door_4: {fileID: 0}
+  FourthRoomRobot: {fileID: 0}
+  failMessage: {fileID: 0}
+  congratulationsMessage: {fileID: 0}
 --- !u!114 &6116755573199954668
 MonoBehaviour:
   m_ObjectHideFlags: 0
