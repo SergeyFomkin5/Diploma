@@ -12,6 +12,7 @@ public class Level_6_TerminalScript : MonoBehaviour
     [SerializeField] private Player_movement player_Movement;
     [SerializeField] private Player_CameraRotation player_CameraRotation;
     [SerializeField] private Animator door_1;
+    [SerializeField] private Animator Robot;
 
     [SerializeField] private GameObject failMessage;
     [SerializeField] private GameObject congratulationsMessage;
@@ -156,6 +157,7 @@ public class Level_6_TerminalScript : MonoBehaviour
         if (RobotNameCheck && RobotJobCheck && RobotAuthLevelCheck && ClassCreatingCheck)
         {
             door_1.SetTrigger("DoorOpen");
+            Robot.SetTrigger("Rotate");
             ShowCongratulationsMessage();
             Debug.Log("Успех");
             //Fabricator.SetTrigger("DoorOpen");
