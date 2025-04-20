@@ -22,7 +22,7 @@ public class NextLevelScript : MonoBehaviour
         Debug.Log("Loading next level with index: " + nextLevelIndex); // Проверка индекса
         SceneManager.LoadScene(nextLevelIndex);
 
-        if (nextLevelIndex == 7)
+        if (nextLevelIndex == 0)
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
