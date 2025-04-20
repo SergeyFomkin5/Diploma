@@ -4801,6 +4801,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Elevator (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2577862192410706040, guid: e41708268c4ce1a49bca8459df55100d, type: 3}
+      propertyPath: nextLevelIndex
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3328969360791542893, guid: e41708268c4ce1a49bca8459df55100d, type: 3}
       propertyPath: m_Size.x
       value: 0.5
