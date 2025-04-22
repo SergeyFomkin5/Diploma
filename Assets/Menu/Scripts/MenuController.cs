@@ -35,7 +35,13 @@ public class MenuController : MonoBehaviour
                 mainMenu.SetActive(true);
             }
         }
+
+        //if (settingsMenu)
+        //{
+        //    AudioSettings.MusicVolume
+        //}
     }
+    
 
     public void ShowMainMenu()
     {
