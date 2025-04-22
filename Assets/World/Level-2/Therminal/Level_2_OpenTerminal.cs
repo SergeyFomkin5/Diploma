@@ -16,10 +16,11 @@ public class Level_2_OpenTerminal : MonoBehaviour
     [SerializeField] private Animator door_3;
     [SerializeField] private GameObject failMessage;
     [SerializeField] private GameObject congratulationsMessage;
+    public PauseScript isPauseActive;
     private Coroutine messageCoroutine;
 
     private bool isInTrigger = false; // В зоне терминала
-    private bool isTerminalActive = false; // Терминал открыт
+    public bool isTerminalActive = false; // Терминал открыт
 
     private void Start()
     {
@@ -55,13 +56,13 @@ public class Level_2_OpenTerminal : MonoBehaviour
     private void Update()
     {
         // Открытие терминала
-        if (isInTrigger && Input.GetKeyDown(KeyCode.E) && !isTerminalActive)
+        if (isInTrigger && Input.GetKeyDown(KeyCode.E) && !isTerminalActive && !isPauseActive.isPaused)
         {
             ShowTerminal();
         }
 
         // Закрытие терминала
-        if (isTerminalActive && Input.GetKeyDown(KeyCode.Escape))
+        if (isTerminalActive && Input.GetKeyDown(KeyCode.Escape) && isPauseActive.isPaused)
         {
             CloseTerminal();
         }
@@ -73,7 +74,7 @@ public class Level_2_OpenTerminal : MonoBehaviour
         }
     }
 
-    private void ShowTerminal()
+    public void ShowTerminal()
     {
         isTerminalActive = true;
         terminalUI.SetActive(true);
