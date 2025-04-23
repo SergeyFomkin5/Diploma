@@ -10139,6 +10139,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7396eeb9ba49f3048868fb3a2b06bacd, type: 3}
+--- !u!1 &705226961 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 709313598607524111, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+  m_PrefabInstance: {fileID: 1780618038}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &708812351
 GameObject:
   m_ObjectHideFlags: 0
@@ -13957,6 +13962,74 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7396eeb9ba49f3048868fb3a2b06bacd, type: 3}
+--- !u!1 &996921149
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 996921152}
+  - component: {fileID: 996921151}
+  - component: {fileID: 996921150}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &996921150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996921149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &996921151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996921149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &996921152
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996921149}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -14.886074, y: 0.24792194, z: 20.54421}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2133364552}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1027274629
 GameObject:
   m_ObjectHideFlags: 0
@@ -23177,6 +23250,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 709313598607524111, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+      propertyPath: m_Name
+      value: Settings_Audio
+      objectReference: {fileID: 0}
+    - target: {fileID: 709313598607524111, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 720482745640584877, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.9999466
+      objectReference: {fileID: 0}
     - target: {fileID: 998147500283778342, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
       propertyPath: pickUpArray.Array.size
       value: 5
@@ -23257,9 +23342,29 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3117939666945708880, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4774223647749550379, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 5579768872144471673, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+      propertyPath: settingsAudio
+      value: 
+      objectReference: {fileID: 705226961}
+    - target: {fileID: 6119657721949283100, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6119657721949283100, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6119657721949283100, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 6869762417295877169, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
       propertyPath: m_IsActive
@@ -23332,6 +23437,18 @@ PrefabInstance:
     - target: {fileID: 7413795827823648534, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
       propertyPath: m_BackGroundColor.r
       value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 8504714362658360404, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8504714362658360404, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8504714362658360404, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 8875904347454286864, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -28544,7 +28661,8 @@ Transform:
   m_LocalPosition: {x: 14.886074, y: -0.24792194, z: -20.54421}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 996921152}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2133364553
