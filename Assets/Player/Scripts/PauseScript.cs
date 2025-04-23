@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class PauseScript : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private GameObject settings;
+    [SerializeField] private GameObject settingsAudio;
     public TerminalList terminalList;
     public bool isPaused = false;
     public bool isSettingsActive = false;
@@ -13,7 +13,7 @@ public class PauseScript : MonoBehaviour
     private void Start()
     {
         pauseMenu.SetActive(false);
-        settings.SetActive(false);
+        settingsAudio.SetActive(false);
     }
 
     private void Update()
@@ -28,7 +28,7 @@ public class PauseScript : MonoBehaviour
 
         if (isSettingsActive && Input.GetKeyDown(KeyCode.Escape))
         {
-            settings.SetActive(false);
+            settingsAudio.SetActive(false);
             isSettingsActive = false;
         }
     }
@@ -58,7 +58,7 @@ public class PauseScript : MonoBehaviour
     }
     public void Settings()
     {
-        settings.SetActive(true);
+        settingsAudio.SetActive(true);
         isSettingsActive = true;
     }
 
