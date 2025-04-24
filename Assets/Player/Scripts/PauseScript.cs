@@ -6,7 +6,6 @@ public class PauseScript : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject settingsAudio;
-    public TerminalList terminalList;
     public bool isPaused = false;
     public bool isSettingsActive = false;
 
