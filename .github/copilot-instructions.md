@@ -2,7 +2,7 @@
 - Project name: Diploma
 - Unity version: Unity 2022.3.56f1
 - Active game object:
-  - Name: Elevator
+  - Name: PlayerUI
   - Tag: Untagged
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
