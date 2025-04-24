@@ -625,6 +625,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4963252686715589060}
+  - component: {fileID: 5722360152717926084}
   - component: {fileID: 5165072566912523138}
   - component: {fileID: 712270325635972959}
   - component: {fileID: 7511438588458256535}
@@ -656,6 +657,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -200}
   m_SizeDelta: {x: 800, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5722360152717926084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828046167187377795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6123b153596cf6b4db33639bdbb1b2d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMusicVolume: 1
 --- !u!222 &5165072566912523138
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1829,7 +1843,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 3117939666945708880}
   settingsAudio: {fileID: 709313598607524111}
-  terminalList: {fileID: 3156622199841816462}
   isPaused: 0
   isSettingsActive: 0
 --- !u!1 &3117939666945708880
@@ -1864,7 +1877,6 @@ RectTransform:
   m_Children:
   - {fileID: 8840710877497801654}
   - {fileID: 6032483450473634440}
-  - {fileID: 8295121667600894245}
   m_Father: {fileID: 7386603939317111881}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2512,6 +2524,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2574217550237471345}
+  - component: {fileID: 4300924925177318683}
   - component: {fileID: 8488311244116853820}
   - component: {fileID: 7562310860092397148}
   - component: {fileID: 103321111169883637}
@@ -2543,6 +2556,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 82}
   m_SizeDelta: {x: 800, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4300924925177318683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4652972793987486636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6123b153596cf6b4db33639bdbb1b2d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMusicVolume: 0
 --- !u!222 &8488311244116853820
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2972,55 +2998,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!1 &6685259273047477010
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8295121667600894245}
-  - component: {fileID: 3156622199841816462}
-  m_Layer: 5
-  m_Name: PauseControl
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &8295121667600894245
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6685259273047477010}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8311496565931059871}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3156622199841816462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6685259273047477010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9184e71028280c04b9e64d9eb3f7b503, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Level_2_Terminal: {fileID: 0}
 --- !u!1 &6714114810174153334
 GameObject:
   m_ObjectHideFlags: 0
