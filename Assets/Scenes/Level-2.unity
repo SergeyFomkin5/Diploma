@@ -20716,6 +20716,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3156622199841816462, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
+      propertyPath: Level_2_Terminal
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3201669503906465224, guid: 109591d924f364c4da286ec52d2a399e, type: 3}
       propertyPath: m_Layer
       value: 5
