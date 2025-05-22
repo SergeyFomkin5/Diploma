@@ -132,7 +132,7 @@ public class Level_2_OpenTerminal : MonoBehaviour
 
             case "Terminal_2":
                 // ѕроверка слова дл€ второго терминала
-                if (inputText == "!isWorking")
+                if (inputText == "!isWorking()")
                 {
                     door_2.SetTrigger("Door-2"); // ”бедитесь в существовании Door-2 анимации!
                     ShowCongratulationsMessage();
