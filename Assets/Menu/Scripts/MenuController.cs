@@ -67,31 +67,38 @@ public class MenuController : MonoBehaviour
     public void selectLevel_0()
     {
         SceneManager.LoadScene("Level-0");
+        Time.timeScale = 1.0f;
     }
 
     public void selectLevel_1()
     {
         SceneManager.LoadScene("Level-1");
+        Time.timeScale = 1.0f;
     }
     public void selectLevel_2()
     {
         SceneManager.LoadScene("Level-2");
+        Time.timeScale = 1.0f;
     }
     public void selectLevel_3()
     {
         SceneManager.LoadScene("Level-3");
+        Time.timeScale = 1.0f;
     }
     public void selectLevel_4()
     {
         SceneManager.LoadScene("Level-4");
+        Time.timeScale = 1.0f;
     }
     public void selectLevel_5()
     {
         SceneManager.LoadScene("Level-5");
+        Time.timeScale = 1.0f;
     }
     public void selectLevel_6()
     {
         SceneManager.LoadScene("Level-6");
+        Time.timeScale = 1.0f;
     }
 
     public void Quit()
