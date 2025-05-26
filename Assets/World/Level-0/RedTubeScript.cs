@@ -7,6 +7,11 @@ public class RedTubeScript : MonoBehaviour
     [SerializeField] private Animator RedCube;
     public int isCorrectAnswer = 0;
 
+    private void Start()
+    {
+        isCorrectAnswer = 0;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "FirstCube")
