@@ -9,6 +9,14 @@ public class PressurePlate_ThirdDoor_SecondPlate : MonoBehaviour
     public static int cubeTwoCount = 0; // Глобальная переменная для куба с двумя
     public static int cubeFourCount = 0; // Глобальная переменная для куба с четырьмя
 
+    private void Start()
+    {
+        cubeOneCount = 0;
+        cubeTwoCount = 0;
+        cubeFourCount = 0;
+        flowerCount = 0;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "CubeWithOne")
